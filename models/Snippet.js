@@ -13,4 +13,6 @@ Snippet.add({
     }
 })
 
+Snippet.defaultColumns= 'title, content'
+
 Snippet.register()

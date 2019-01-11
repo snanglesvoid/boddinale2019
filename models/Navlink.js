@@ -14,4 +14,6 @@ Navlink.add({
     sortOrder: { type: Types.Number, default: 0 },
 })
 
+Navlink.defaultColumns= 'title, linkUrl, inDropdown, sortOrder'
+
 Navlink.register()

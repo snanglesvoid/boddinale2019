@@ -12,4 +12,6 @@ Partner.add({
     sponsor: { type: Types.Boolean, index: true },
 })
 
+Partner.defaultColumns= 'name, linkUrl, sponsor, logo'
+
 Partner.register()

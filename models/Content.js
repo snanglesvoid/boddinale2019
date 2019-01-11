@@ -14,5 +14,4 @@ Content.add({
   }
 })
 
-
 Content.register()

@@ -12,4 +12,6 @@ PressLink.add({
     linkUrl: { type: Types.Text }
 })
 
+PressLink.defaultColumns= 'title, linkText, linkUrl'
+
 PressLink.register()

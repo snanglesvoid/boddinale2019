@@ -11,4 +11,6 @@ JuryMember.add({
     linkUrl:  { type: Types.Url }
 })
 
+JuryMember.defaultColumns= 'name, linkText, linkUrl'
+
 JuryMember.register()

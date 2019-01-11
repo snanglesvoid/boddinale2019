@@ -28,7 +28,6 @@ mixin movie(movie, truncate)
       //- div.description-text!= movie.description
       
       if movie.externalLink
-        p.card-text 
-          a(href= movie.externalLink target="_blank")
+          a(href= movie.externalLink target="_blank").movie-weblink
             i.fa.fa-globe
       .share

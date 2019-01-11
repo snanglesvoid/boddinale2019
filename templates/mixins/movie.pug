@@ -25,8 +25,10 @@ mixin movie(movie, truncate)
       p.card-text.author by <a href="#{movie.director.href}"><em>#{movie.director.name}</em></a>
       div.movie-category!= movie.category + (',') + ('&#32;')
       div.movie-length!= movie.length + ('&#39;')
-      div.description-text!= movie.description
+      //- div.description-text!= movie.description
       
       if movie.externalLink
-        p.card-text <a href="#{movie.externalLink}" target="_blank"><em>#{movie.externalLink}</em></a>
+        p.card-text 
+          a(href= movie.externalLink target="_blank")
+            em= movie.externalLink
       #share

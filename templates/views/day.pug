@@ -34,8 +34,8 @@ block intro
       - var dateText = weekdays[day.date.getDay()]
       //- h1 #{weekdays[(data.day-1)%7]} #{days[data.day]}th
       h1= dateText + " " + day._.date.format('D') + 'th'
-      h5.h5-days
-        +snippet('day-title-time') 
+      h5.h5-days= data.day.time
+        //- +snippet('day-title-time') 
         //- From 18:00 to 23:00
       h5.h5-days
         +snippet('day-title-address')

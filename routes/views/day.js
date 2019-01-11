@@ -16,7 +16,7 @@ exports = module.exports = (req, res) => {
     }
 
 	view.query('data.awards', keystone.list('Award').model.find())
-	view.query('day', keystone.list('Day').model.findOne({index: req.params.day}))
+	view.query('day', keystone.list('Day').model.findOne({index: req.params.day}).sort({index: -1}))
 
     view.on('init', function (next) {
 		if (locals.data.day < 11) {

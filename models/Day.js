@@ -17,6 +17,10 @@ Day.add({
     date: {
         type: Types.Date
     },
+    time: {
+        type: Types.Text,  default: "From 18:00 to 23:00"
+    },
+
     picture: {
         type: Types.CloudinaryImage
     }

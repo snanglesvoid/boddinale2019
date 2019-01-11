@@ -124,32 +124,39 @@ html
     .container: .footer
       p partners
       .row
-        each partner in partners
+        each partner in partners.filter(x => !x.sponsor)
           .col-sm-6.col-md-4
             a(href= partner.linkUrl, target="_blank")
               img(src=partner.logo.url)
     .container: .footer
-      p partners
-      .col-sm-6.col-md-4
-        a(href="http://www.urbanspree.com/", target="_blank")
-          img(src='../images/urban_spree.png')
-      .col-sm-6.col-md-4
-        a(href="http://ilkino.de/", target="_blank")
-          img(src='../images/kino.png')
-      .col-sm-6.col-md-4
-        a(href="https://www.moviemento.de/", target="_blank")
-          img(src='../images/moviemento-logo.png')
-    .container: .footer
-      .col-sm-6.col-md-4
-        a(href="http://zukunft-ostkreuz.de/", target="_blank")
-          img(src='../images/11073809_772454926195890_7190610698609973984_n.png')
-      .col-sm-6.col-md-4
-        a(href="http://augohr.de/", target="_blank")
-          img(src='../images/aug_logo_1.png')
-      .col-sm-6.col-md-4
-        a(href="http://alex-berlin.de/", target="_blank")
-          img(src='../images/logo.png')
-    .container: .footer
+      p sponsored by
+      .row
+        each partner in partners.filter(x => x.sponsor)
+          .col-sm-6.col-md-4
+            a(href= partner.linkUrl, target="_blank")
+              img(src=partner.logo.url)
+    //- .container: .footer
+    //-   p partners
+    //-   .col-sm-6.col-md-4
+    //-     a(href="http://www.urbanspree.com/", target="_blank")
+    //-       img(src='../images/urban_spree.png')
+    //-   .col-sm-6.col-md-4
+    //-     a(href="http://ilkino.de/", target="_blank")
+    //-       img(src='../images/kino.png')
+    //-   .col-sm-6.col-md-4
+    //-     a(href="https://www.moviemento.de/", target="_blank")
+    //-       img(src='../images/moviemento-logo.png')
+    //- .container: .footer
+    //-   .col-sm-6.col-md-4
+    //-     a(href="http://zukunft-ostkreuz.de/", target="_blank")
+    //-       img(src='../images/11073809_772454926195890_7190610698609973984_n.png')
+    //-   .col-sm-6.col-md-4
+    //-     a(href="http://augohr.de/", target="_blank")
+    //-       img(src='../images/aug_logo_1.png')
+    //-   .col-sm-6.col-md-4
+    //-     a(href="http://alex-berlin.de/", target="_blank")
+    //-       img(src='../images/logo.png')
+    //- .container: .footer
       p sponsored by:
       br
       br
@@ -165,8 +172,13 @@ html
       p.toogle(data-toggle='collapse', data-target='#demo') Imprint
         #demo.collapse
           .row
-            p Muriquee UG Gormannstrasse 14 <br /> 10119 Berlin Germany <br /> HRB 167113 B <br /> Managing Director: Gianluca Baccanico <br /> 
-              a(href='mailto:g@muriquee.com') g@muriquee.com
+            if imprintText
+              p= imprintText.content
+            else
+              if user && user.isAdmin
+                a(href="#" onclick='createContent("imprint-text")' style="color: red;") Missing Content, click to create!
+            //- p Muriquee UG Gormannstrasse 14 <br /> 10119 Berlin Germany <br /> HRB 167113 B <br /> Managing Director: Gianluca Baccanico <br /> 
+            //-   a(href='mailto:g@muriquee.com') g@muriquee.com
           
                       
 

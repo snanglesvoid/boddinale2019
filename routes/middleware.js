@@ -68,6 +68,14 @@ exports.initLocals = function (req, res, next) {
 					cb(err)
 				})
 			}
+			,
+			cb => {
+				keystone.list('Content').model.findOne({slug: 'imprint-text'})
+				.exec((err, c) => {
+					res.locals.imprintText = c
+					cb(err)
+				})
+			}
 		],
 		(fn, cb) => fn(cb),
 		err => next(err)

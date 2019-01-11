@@ -18,7 +18,7 @@ block content
       p.fixed-helpers!= thanks.content
     else
       if user && user.isAdmin
-        a(href="#" onclick="createContent(this)" style="color: red;") Missing Content. Click to create
+        a(href="#" onclick="createContent('jury-special-thanks')" style="color: red;") Missing Content. Click to create
       //- | Directed by Gianluca Baccanico 
       //- br
       //- a(href="http://muriquee.com" target="_blank") Muriquee

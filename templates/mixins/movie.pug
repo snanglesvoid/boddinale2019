@@ -18,7 +18,7 @@ mixin movie(movie, truncate)
       else if movie.display.image.url
         img.card-image(src=movie._.display.image.crop(800,450)).img-responsive
     .card-content
-      a(href="/movie/#{movie.slug}" style="cursor:pointer;")
+      a(href="/movie/" + movie.slug,  style="cursor:pointer;")
         .card-title= movie.title
       if movie.direcror && movie.director.name
         p.card-text.author by <a href="#{movie.director.href}"><em>#{movie.director.name}</em></a>

@@ -9,7 +9,7 @@ mixin videoEmbed(url)
       iframe(src=url frameborder="0" allowfullscreen)
 
 mixin movie(movie, truncate)
- .card(class="#{truncate?'large-card':'small-card'}")
+ .card(class= truncate?  'large-card':'small-card')
     a.movie(href="/movie/#{movie.slug}" style="cursor:pointer;")
       if movie.display.youtube
         +videoEmbed(movie.display.youtube)

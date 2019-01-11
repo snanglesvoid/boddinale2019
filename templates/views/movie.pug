@@ -25,7 +25,7 @@ block content
     - var days = Array.from(new Array(12), (x,i) => i+14)
     - var weekdays = ["Thursday","Friday","Saturday","Sunday","Monday","Tuesday", "Wednesday"]
     - var day = data.movie.screenTime.day
-    if data.movie.screenTime.year == 2018
+    //- if data.movie.screenTime.year == (new Date().getFullYear())
       h1(style="background:transparent;")
         a(href="/day/#{day}") #{weekdays[(day-1)%7]} Feb  #{days[day]}th 2018
       br

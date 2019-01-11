@@ -80,14 +80,16 @@ html
             ul.nav.navbar-nav.navbar-left
               each link in navLinks.filter(l => !l.inDropdown)
                 li(class=(section == link.key ? 'active' : null)): a(href=link.linkUrl)= link.title
-              li.dropdown
-                a.dropdown-toggle(data-toggle="dropdown", href="#")
-                  //- +snippet('nav-menu-about')
-                  | About
-                  span.caret
-                ul.dropdown-menu
-                  each link in navLinks.filter(l => l.inDropdown)
-                    li(class=(section == link.key ? 'active' : null)): a(href=link.linkUrl)= link.title
+              -var ddlinks = navLinks.filter(l => l.inDropdown)
+              if ddlinks.length > 0
+                li.dropdown
+                  a.dropdown-toggle(data-toggle="dropdown", href="#")
+                    //- +snippet('nav-menu-about')
+                    | About
+                    span.caret
+                  ul.dropdown-menu
+                    each link in ddlinks
+                      li(class=(section == link.key ? 'active' : null)): a(href=link.linkUrl)= link.title
               li.nav-divider
             ul.nav.navbar-nav.navbar-right
               li: a(href="https://itunes.apple.com/app/id1341009308" target="_blank")

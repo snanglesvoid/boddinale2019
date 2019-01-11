@@ -1,3 +1,3 @@
-$("#share").jsSocials({
+$(".share").jsSocials({
 	shares: ["facebook", "twitter"]
 });

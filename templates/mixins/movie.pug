@@ -30,5 +30,5 @@ mixin movie(movie, truncate)
       if movie.externalLink
         p.card-text 
           a(href= movie.externalLink target="_blank")
-            em= movie.externalLink
-      #share
+            i.fa.fa-globe
+      .share

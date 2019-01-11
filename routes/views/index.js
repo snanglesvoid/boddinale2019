@@ -11,5 +11,14 @@ exports = module.exports = function (req, res) {
 
 	view.query('days', keystone.list('Day').model.find().sort({index: 1}))
 	// Render the view
+	view.on('init', next => {
+		keystone.list('Content').model.findOne({ makeHomepage: true}).exec((err, c) => {
+			if (c) {
+				return res.redirect('/content/' + c.slug)
+			}
+			next(err)
+		})
+	})
+
 	view.render('index');
 };

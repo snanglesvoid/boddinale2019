@@ -11,7 +11,10 @@ Content.add({
   title : { type : Types.Text, required: true, index: true },
   content : {
     type : Types.Html, wysiwyg : true, height: 150
-  }
+  },
+  makeHomepage : { type: Types.Boolean, index: true }
 })
+
+Content.defaultColumns = 'title, makeHomepage'
 
 Content.register()

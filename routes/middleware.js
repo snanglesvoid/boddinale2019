@@ -62,7 +62,7 @@ exports.initLocals = function (req, res, next) {
 			}
 			,
 			cb => {
-				keystone.list('Partner').model.find()
+				keystone.list('Partner').model.find().sort({sortOrder:1})
 				.exec((err, ps) => {
 					res.locals.partners = ps
 					cb(err)

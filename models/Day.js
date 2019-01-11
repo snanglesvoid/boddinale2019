@@ -26,7 +26,7 @@ Day.add({
     }
 })
 
-Day.defaultSort= '-index'
+Day.defaultSort= 'index'
 Day.defaultColumns= 'title, index, date, picture'
 
 Day.register()

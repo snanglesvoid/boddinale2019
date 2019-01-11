@@ -5,8 +5,9 @@ exports = module.exports = (req, res) => {
     let locals = res.locals
 
     locals.section = 'movie'
-
-    view.query('movie', keystone.list('Movie').model.findOne({
+    locals.data = {}
+    
+    view.query('data.movie', keystone.list('Movie').model.findOne({
         slug: req.params.slug
     }))
 

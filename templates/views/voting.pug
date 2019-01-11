@@ -1,0 +1,43 @@
+extends ../layouts/default
+
+include ../mixins/snippet
+
+block js
+
+block intro
+  if data.intro
+    .container!= data.intro.content
+  else
+    if user && user.isAdmin
+      .container
+        h3
+          a(href='#', onclick="createContent('voting-intro')" style='color: red;') Missing Text. Click to create.
+    //- p(style="font-size: 1.8rem;")
+    //-   | The Boddinale Community Award this year is decided on the App. 
+
+    //- p(style="font-size: 1.8rem;")
+    //-   | You have one vote for each day of the Festival and you are kindly invited to share the movies you like and support them. 
+    //- p(style="font-size: 1.8rem;")
+    //-   | That is why the festival is free.
+
+    //- p(style="font-size: 1.8rem;")
+    //-   | Voting will end on February 25th at 10am, Urban Spree Time.
+    //- br(style="font-size: 1.8rem;")
+
+block content
+  .container
+    h2 
+      +snippet('voting-current-standings')
+      //- Current Standings
+    br
+    if +movies.length > 0
+      ul(style="list-style-type: none;")
+        each movie, index in movies
+          if +movie.votes > 0
+            li
+              div.movie-vote(style="display: inline-flex; width: 100%; justify-content: space-between;")
+                div(style="width: 5%; font-size: 1.8rem;")= '#' + (index+1) + ' '
+                div(style="width: 80%; text-align:left;")
+                  a(href="/movie/#{movie.slug}" style="cursor:pointer;")
+                    h3= movie.title
+                div.vote-n(style="width: 12%; font-size:1.8rem;")= +movie.votes + (movie.votes == 1 ? ' vote' : ' votes')

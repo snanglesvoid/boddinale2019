@@ -1,0 +1,42 @@
+extends ../layouts/default
+
+include ../mixins/snippet
+
+block intro
+  .container.home
+    h1 
+      +snippet('home-title-date')
+      br
+      +snippet('home-title-edition')
+      //- Febuary 15th - 25th 2018 <br /> 6th Edition <br />
+    img.logo(src='../images/boddinale-stripe.png' style="width:65%;")
+    h5
+      +snippet('home-free-entrance')
+      br
+      +snippet('home-address')
+      //- Free Entrance <br /> Urban Spree, Revalerstrasse 99
+    p(style="text-align:center;") 
+      +snippet('home-time')
+      //- From 18:00 to 23:00 each day
+    //- p(style="text-align: center;"): a(href="http://www.boddinale.com/files/Boddinale_2017_program.pdf") Download Program
+    
+    ul.row
+      each d in days
+        li.col-xs-15.col-lg-15.days
+          a(href='/day/' + d.index).days-content
+            | #{d._.date.format('dd DD')}th
+            //- img(src=d.picture.url)
+            img(src="http://res.cloudinary.com/doljmvuo6/image/upload/c_crop,f_auto,g_faces,h_450,w_800/v1516819454/j8q24fcembcrt57uqtza.jpg")
+    //- -var days = Array.from(new Array(11), (x,i) => i+1)
+    //- -var weekdays = ["Thursday", "Friday","Saturday","Sunday","Monday","Tuesday","Wednesday"]
+
+    //- ul.row
+    //-   each d, i in days
+    //-     li.col-xs-15.col-lg-15.days: a(href="/day/#{d}").days-content #{weekdays[i%7]}<br />#{14+d}th
+    //-       img(src='../images/day#{d}.jpg')
+
+block content
+  //- .container: jumbotron
+  //-   if data
+  //-     div!= data.content
+

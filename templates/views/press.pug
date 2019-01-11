@@ -1,0 +1,62 @@
+extends ../layouts/default
+
+include ../mixins/static-intro
+
+
+block intro
+  +static-intro("Press")
+
+block content
+  .container: .jumbotron
+    if data
+      div!= data
+    else
+      p Boddinale they say:
+      ul
+        each presslink in presslinks
+          li= presslink.title
+            | -&nbsp;
+            a(href= presslink.linkUrl)= presslink.linkText
+      //- ul
+        li berlin.de -&nbsp; 
+          a(href='http://www.berlin.de/kultur-und-tickets/tipps/film/festivals/2930878-2020379-boddinale-filmfestival.html', target='_blank') Boddinale Festival
+        li handelsblatt -&nbsp;
+          a(href='https://global.handelsblatt.com/edition/117/ressort/european-lifestyles/article/the-other-berlinale', target='_blank') The other Berlinale
+        li taz -&nbsp;
+          a(href='http://www.taz.de/1/archiv/digitaz/artikel/?ressort=ku&dig=2015%2F02%2F05%2Fa0221', target='_blank') Filme aus Boddiwood
+        li sugar high -&nbsp;
+          a(href='http://berlinfashionjournal.com/issue/812-all-eyes-neukolln', target='_blank') all eyes on neukölln
+        li berliner film festivals -&nbsp;
+          a(href='http://berliner-filmfestivals.de/2013/02/interview-zur-ersten-boddinale-2013', target='_blank') Von der Community für Neukölln
+        li kulturen -&nbsp;
+          a(href='http://kulturjournalismus.de/2015/02/neukoelln-feiert-filme/', target='_blank') Neukölln feiert Filme
+        li flux fm 2015 -&nbsp;
+          a(href='http://www.fluxfm.de/the-districts-die-boddinale-morningshow-am-nachmittag/', target='_blank') Morningshow am Nachmittag
+        li alex berlin tv -&nbsp;
+          a(href='https://www.youtube.com/watch?v=nolAUBepT7s', target='_blank') Boddinale 2015 Feature
+        li alex berlin tv -&nbsp;
+          a(href='https://www.youtube.com/watch?v=KL1gzIBPFPo', target='_blank') Boddinale 2014 Feature
+        li stimme russlands -&nbsp;
+          a(href='http://de.sputniknews.com/german.ruvr.ru/2014_02_05/Das-Boddinale-Festival-zeigt-ab-Donnerstag-Filme-abseits-des-Mainstream-8971/', target='_blank') Das Boddinale-Festival zeigt ab Donnerstag Filme abseits des Mainstream
+        li berliner zeitung  -&nbsp;
+          a(href='http://www.berliner-zeitung.de/film/filmfestival-in-neukoelln-die-alternative-zur-berlinale-heisst-boddinale-,10809184,26161116.html', target='_blank') Die Alternative zur Berlinale heißt Boddinale 
+        li klapptre.is -&nbsp;
+          a(href='http://klapptre.is/2014/02/14/berlin-2014-boddinale/', target='_blank') Berlín 2014: Boddinale
+        li digital in berlin -&nbsp;
+          a(href='http://www.digitalinberlin.de/boddinale-loophole-berlin-2014/', target='_blank') Boddinale @ Loophole Berlin 
+        li digital in berlin
+          a(href='http://www.digitalinberlin.de/boddinale-loophole-berlin-2013/', target='_blank') d/b recommended: boddinale @loophole berlin
+        li neuköllner -&nbsp;
+          a(href='http://www.neukoellner.net/kunst-kitsch/heimkino-bei-kippe-und-bier/', target='_blank') Heimkino bei Kippe und Bier
+        li neuköllner -&nbsp;
+          a(href='http://www.neukoellner.net/kunst-kitsch/kiez-goes-berlinale/', target='_blank') Kiez goes Berlinale
+        li mightytravelers -&nbsp;
+          a(href='http://www.mightytraveliers.com/berlinale-boddinale/', target='_blank') Berlinale vs. Boddinale – Ein cinematographisches Kontrastprogramm
+        li indie berlin -&nbsp;
+          a(href='http://www.indieberlin.de/art/1st-boddinale-loophole-presents-the-other-film-festival,.html', target='_blank') _1st Boddinale: Loophole presents the other film festival
+        li don´t panic online -&nbsp;
+          a(href='http://dontpaniconline.de/p/event/boddinale-film-festival-at-loophole', target='_blank') Boddinale Film Festival at Loophole
+        li horst und edeltraut -&nbsp;
+          a(href='http://www.horstundedeltraut.com/2013/02/boddinale/', target='_blank') boddinale
+        li greatest berlin -&nbsp;
+          a(href='http://www.greatest-berlin.de/kultur/tipps/boddinale_1st_edition/1150', target='_blank') boddinale 1st edition

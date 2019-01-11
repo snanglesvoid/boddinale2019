@@ -1,0 +1,33 @@
+extends ../layouts/default2
+
+include ../mixins/movie
+
+block og
+  meta(property='og:title', content='#{data.movie.title}')
+  //- meta(property='og:description', content='#{data.movie.description}')
+  meta(property='og:url', content='http://boddinale.com/movie/#{data.movie.slug}')
+  meta(property='og:type', content='article')
+  if data.movie.display && data.movie.display.image && data.movie.display.image.secure_url
+    meta(property='og:image', content='#{data.movie.display.image.secure_url}')
+  else
+    meta(property='og:image', content='http://boddinale.com/images/boddinale_front.jpg')
+  //- if data.movie.display && data.movie.display.youtube
+    //- meta(property='og:type', content='movie')
+    //- meta(property='og:video', content='#{data.movie.display.youtube}')
+    //- meta(property='og:video:secure_url', content='#{data.movie.display.youtube}')
+  //- if data.movie.display && data.movie.display.vimeo
+    //- meta(property='og:type', content='movie')
+    //- meta(property='og:video', content='#{data.movie.display.vimeo}')
+    //- meta(property='og:video:secure_url', content='#{data.movie.display.vimeo}')
+
+block content
+  .container: row
+    - var days = Array.from(new Array(12), (x,i) => i+14)
+    - var weekdays = ["Thursday","Friday","Saturday","Sunday","Monday","Tuesday", "Wednesday"]
+    - var day = data.movie.screenTime.day
+    if data.movie.screenTime.year == 2018
+      h1(style="background:transparent;")
+        a(href="/day/#{day}") #{weekdays[(day-1)%7]} Feb  #{days[day]}th 2018
+      br
+      br
+    +movie(data.movie, true)

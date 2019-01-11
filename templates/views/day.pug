@@ -1,0 +1,88 @@
+extends ../layouts/default
+
+include ../mixins/movie
+include ../mixins/snippet
+
+block js
+  script.
+    $(function() {
+      const hostname = window.location.hostname
+      const protocol = window.location.protocol
+      const port     = window.location.port ? `:${window.location.port}` : ''
+      const day      = +#{data.day}
+      function previous () {
+        if (day <= 1) return
+        window.location.href = `${protocol}//${hostname}${port}/day/${day - 1}`
+      }
+      function next () {
+        if (day >= 11) return 
+        window.location.href = `${protocol}//${hostname}${port}/day/${day + 1}`
+      }
+      $('.previous-button')
+        .on('click', previous)
+        .prop('disabled', day <= 1)
+      $('.next-button')
+        .on('click',next)
+        .prop('disabled', day >= 11)
+    })
+
+block intro
+  .container
+    if data.day < 11
+      //- - var days = Array.from(new Array(12), (x,i) => i+14)
+      - var weekdays = ["Sunday", "Monday","Tuesday", "Wednesday","Thursday","Friday","Saturday"]
+      - var dateText = weekdays[day.date.getDay()]
+      //- h1 #{weekdays[(data.day-1)%7]} #{days[data.day]}th
+      h1= dateText + " " + day._.date.format('D') + 'th'
+      h5.h5-days
+        +snippet('day-title-time') 
+        //- From 18:00 to 23:00
+      h5.h5-days
+        +snippet('day-title-address')
+        //- Urban Spree, Revalerstrasse 99
+      h5.h5-days(style='font-size: 1.5rem;')
+        +snippet('day-title-subtitles')
+        //- (english subtitles when needed)
+    else
+      h1 
+        +snippet('day-title-awards')
+        //- 2019 Awards
+
+    .row.button-row
+      if data.day > 1 && data.day < 11
+        button.btn.btn-default.previous-button   
+          +snippet('day-previous')
+          //- Previous Day
+      if data.day < 11
+        button.btn.btn-default.next-button
+          +snippet('day-next')
+          //- Next Day
+
+block content
+  if data.day < 11
+    - var beforePause = true
+    .container.single-day                    
+      if +data.movies.length > 0
+        ul.cards
+          each movie, index in data.movies
+            if movie.screenTime.position - index > 1 && beforePause
+              - beforePause = false
+              li.cards-item
+                .card
+                  .card-content
+                    .card-title Pause
+                    .card-text
+                      +snippet('day-pause-time')  
+                      //- 20:30 to 21:00
+            li.cards-item
+              +movie(movie)                        
+  else
+    .container: jumbotron
+      div!= data.content
+      .container.single-day
+        if +data.movies.length > 0
+          ul.cards
+            each movie, index in data.movies
+              li.cards-item
+              +movie(movie) 
+    

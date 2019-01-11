@@ -1,0 +1,42 @@
+extends ../layouts/default
+include ../mixins/static-intro
+
+block intro
+  +static-intro("Partners")
+
+block content
+  .container: .jumbotron
+    if data
+      div!= data
+    else
+      p
+        +snippet('partners-produced-by')
+        //- Boddinale is produced by Muriquee _traveling tribes<br>
+        em
+            +snippet('partners-produced-by-2')
+            //- | in collaboration with </em> 
+      ul
+        each partner in partners.filter(p => !p.media)
+          li= partner.name
+        -var mediaPartners = partners.filter(p => p.media)
+        if mediaPartners.length > 0
+          p Media Partners:
+        each partner in mediaPartners
+          li= partner.name
+      p
+        +snippet('partners-collaborations')
+        //- For collaborations, sponsorships and/or partnerships please contact us at g@boddinale.com 
+    //-   ul 
+    //-     li Kino Moviemento
+    //-     li Zukunft Kino
+    //-     li IL Kino
+    //-     li Film Bar
+    //-     li Laidak
+    //-     <br>
+    //-   p.
+    //-     Media Partners:
+    //-   ul
+    //-     li Flux FM
+    //-     li Alex TV
+    //-     li indieberlin.de
+

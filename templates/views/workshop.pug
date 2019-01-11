@@ -1,0 +1,7 @@
+extends ../layouts/default
+
+include ../mixins/workshop
+
+block content
+  .container: row
+    +workshop(data.movie, true)

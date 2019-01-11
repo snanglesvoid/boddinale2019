@@ -1,0 +1,11 @@
+extends ../layouts/default
+
+block intro
+  h3(style='text-align: center;')= data ? data.title : ''
+
+block content
+  .container: .jumbotron
+    if data && data.content
+      div!= data.content
+    else
+      h3 Sorry we couldn't find the page you're looking for :(

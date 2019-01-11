@@ -1,0 +1,32 @@
+mixin directorName(obj)
+  span.
+    by&nbsp;<a href="#{obj.href}"><em>#{obj.name}</em></a>
+
+mixin videoEmbed(url)
+  .vid-wrapper
+    .h-iframe
+      img.card-image(src="/images/placeholder.jpg")
+      iframe(src=url frameborder="0" allowfullscreen)
+
+mixin movie(movie, truncate)
+ .card(class="#{truncate?'large-card':'small-card'}")
+    a.movie(href="/movie/#{movie.slug}" style="cursor:pointer;")
+      if movie.display.youtube
+        +videoEmbed(movie.display.youtube)
+      else if movie.display.vimeo
+        +videoEmbed(movie.display.vimeo)
+      else if movie.display.image.url
+        img.card-image(src=movie._.display.image.crop(800,450)).img-responsive
+    .card-content
+      a(href="/movie/#{movie.slug}" style="cursor:pointer;")
+        .card-title= movie.title
+      if movie.award != length
+        .category-label.card-text= movie.award
+      p.card-text.author by <a href="#{movie.director.href}"><em>#{movie.director.name}</em></a>
+      div.movie-category!= movie.category + (',') + ('&#32;')
+      div.movie-length!= movie.length + ('&#39;')
+      div.description-text!= movie.description
+      
+      if movie.externalLink
+        p.card-text <a href="#{movie.externalLink}" target="_blank"><em>#{movie.externalLink}</em></a>
+      #share

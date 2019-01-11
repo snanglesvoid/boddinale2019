@@ -1,0 +1,60 @@
+extends ../layouts/default
+
+include ../mixins/static-intro
+mixin jury-item(o)
+  span(style="font-size: 16px;"): strong
+    span(style="color: #993300;")= o.name.first + " " + o.name.last
+  a(href="#{o.linkUrl}" target="_blank")= o.linkText
+  br
+
+block intro
+  +static-intro("Jury")
+
+block content
+  .container: .jury
+    p.title-top Boddinale
+  .container: .jumbotron.jury(style="padding-top:1rem")
+    p.fixed-helpers
+                    | Directed by Gianluca Baccanico 
+                    br
+                    a(href="http://muriquee.com" target="_blank") Muriquee
+                    br
+                    b Coordination
+                    br
+                    | Melanie Liu
+                    br
+                    b Telematics
+                    br
+                    | Janik Hotz
+                    br
+                    | Sascha Krischock
+    p.jury-header Jury Members
+     
+    //- - var jury = []
+    //- - jury.push({name : 'Halea Isabelle Kala', links : [{href : 'http://www.timetomuse.com/',           link : 'MUSÉ'}, {href : '"', link : ''}]})
+    //- - jury.push({name : 'Tom Lass',            links : [{href : 'http://www.lassbros.com',              link : 'Lass Bros'          }]})
+    //- - jury.push({name : 'Michal Lederer',      links : [{href : 'http://michaellederer.com',           link : 'michaellederer.com' }]})
+    //- - jury.push({name : 'Sven Loose',          links : [{href : 'http://zukunft-ostkreuz.de/',          link : 'Kino Zukunft'       }]})
+    //- - jury.push({name : 'Carla Molino',        links : [{href : 'http://ilkino.de',                     link : 'IL KINO Berlin'     }]})
+    //- - jury.push({name : 'Magnus Reed',         links : [{href : 'http://magnusreed.com',                link : 'magnusreed.com'     }]})
+    //- - jury.push({name : 'Franziska Rummel',    links : [{href : 'hhttp://www.moviemento.de',            link : 'Kino Moviemento'    }]})
+    //- - jury.push({name : 'Maria Solrun',        links : [{href : 'http://www.imdb.com/name/nm0797578/', link : 'imdb'               }]})
+    each member in members
+      +jury-item(member)
+    p.mobile-helpers
+                      | Directed by Gianluca Baccanico 
+                      br
+                      a(href="http://muriquee.com" target="_blank") Muriquee
+                      br
+                      b Coordination
+                      br
+                      | Melanie Liu
+                      br
+                      | Jennifer Tekneci
+                      br
+                      b Telematics
+                      br
+                      | Janik Hotz
+                      br
+                      | Sascha Krischock
+

@@ -1,0 +1,122 @@
+extends ../layouts/default
+
+include ../mixins/movie
+
+block js
+  script.
+    var query = {
+      a : "#{data.query.a}",
+      q : "#{data.query.q}",
+      y : +"#{data.query.y}",
+      d : +"#{data.query.d}",
+      c : "#{data.query.c}"
+    }
+  script.
+    function queryString() {
+      var res = []
+      if (query.y &&  query.y != 0) res.push(`y=${query.y}`)
+      if (query.d) res.push(`d=${query.d}`)
+      if (query.q) res.push(`q=${query.q}`)
+      if (query.a) res.push(`a=${query.a}`)
+      if (query.c) res.push(`c=${query.c}`)
+      if (query.page) res.push(`page=${query.page}`)
+      return res.length == 0 ? '' : '?' + res.join('&')
+    }
+    function removeQuery(href) {
+      return href.split("?")[0]
+    }
+    function submitSearch () {
+      query.q = $('#search-input').val()
+      delete query.page
+      var href = removeQuery(window.location.href)
+      window.location.href = href + queryString()
+    }
+    function selectYear (div) {
+      let k = +($(div).attr('data-year'))
+      query.y = k.toString()
+      delete query.page
+      var href = removeQuery(window.location.href)
+      window.location.href = href + queryString()
+    }
+    function selectAward (a) {
+      var href = removeQuery(window.location.href)
+      query.a = a
+      delete query.page
+      window.location.href = href + queryString()
+    }
+    function selectCategory (c) {
+      var href = removeQuery(window.location.href)
+      query.c = c
+      delete query.page
+      window.location.href = href + queryString()
+    }
+    $(function() {
+      $('#search-submit-button').on('click', submitSearch)
+      $('#award-select').val(query.a || '')
+      $('#category-select').val(query.c || '')
+      $('#search-input').on('keydown', function(event) {
+        if (event.which == 13 || event.keyCode == 13) {
+          submitSearch()
+          event.preventDefault()
+        }
+      })
+    })
+    
+block intro
+  .container
+                
+block content
+  .container.archive
+    .row.col-sm-8.search-wrapper
+      .col-sm-10(style="margin:0 auto;float:none;")
+        .input-group
+          input#search-input.form-control(type="text", name="search", placeholder="Search.." value=data.query.q)
+          span.input-group-addon.btn.btn-default#search-submit-button Search
+    .col-xs-12.col-sm-6(style="margin:0 auto;float:none;")
+      .col-xs-12.col-sm-6.category(style="display:inline-block")
+        select#award-select.form-control(
+          onchange="selectAward($(this).val())"
+          value="#{data.query.a || ''}")
+          each award in data.awards
+            option= award
+          option(value="") Search for awards
+      .col-xs-12.col-sm-6.category(style="float: right; display:inline-block")
+        select#category-select.form-control(
+          onchange="selectCategory($(this).val())"
+          value="#{data.query.c || ''}")
+          each category in data.categories
+            option= category
+          option(value="") Search by category
+    .row.col-sm-9.years
+      ul(style="list-style:none; padding-left:0;")
+      each year, index in data.years
+        li(style="display:inline-block; padding-left:0;")
+          a(onclick= "selectYear(this)" data-year= year
+            style="cursor:pointer; border:#{data.query.y == year ? '1px solid #c1c1c1;' : 'none'}"
+          )= year
+          span &nbsp;&nbsp;
+      li(style="cursor:pointer; display:inline-block; padding-left:0;"): a(onclick="selectYear(0)") Any
+    p.counter #{data.movies.total} Movies found
+    
+    if +data.movies.total > 0
+      ul.cards
+        each movie, index in data.movies.results
+          li.cards-item
+            +movie(movie)
+    else 
+    //- 08002112525
+      
+    
+    if data.movies.totalPages > 1
+      ul.pagination
+        if data.movies.previous
+          li: a(href= qStrForPage(data.movies.previous)): span.glyphicon.glyphicon-chevron-left
+        else
+          li.disabled: a(href=qStrForPage(1)): span.glyphicon.glyphicon-chevron-left
+        each p, i in data.movies.pages
+          li(class=data.movies.currentPage == p ? 'active' : null)
+            a(href= qStrForPage(p == '...' ? (i ? data.movies.totalPages : 1) : p ))= p
+        if data.movies.next
+          li: a(href= qStrForPage(data.movies.next)): span.glyphicon.glyphicon-chevron-right
+        else
+          li.disabled: a(href= qStrForPage(data.movies.totalPages)): span.entypo.glyphicon.glyphicon-chevron-right

@@ -1,0 +1,299 @@
+.archive {
+  padding-top: 3rem;
+  background-color: @gray-bg;
+
+  .search-wrapper {
+	margin: 0 auto;
+	float: none;
+  }
+
+  .years {
+	float: none;
+	width: auto;
+	display: block;
+	margin: 0 auto 20px auto;
+	text-align: center;
+	line-height: 6rem;
+
+	a {
+	  font-size: 14px;
+	  color: #000;
+	  background-color: #fff;
+	  padding: 10px;
+	  border: 1px solid #fff !important;
+	  
+	  &:hover {
+		text-decoration: none;
+		border: 1px solid #c1c1c1 !important;
+		
+	  }
+	  
+	}
+  }
+
+  .counter {
+	text-align: center;
+	font-size: 17px;
+	margin: 30px 0 20px;
+	font-weight: 600;
+  }
+
+  .category {
+	padding-top: 30px;
+	padding-bottom: 10px;
+	float: none;
+	margin: 0 auto;
+	clear: both;
+	display: inherit;
+  }
+
+}
+
+.cards {
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.cards-item {
+  display: block;
+  padding: 2% 2% 0 2%;
+  @media(min-width: 40rem) {
+	width: 50%;
+  }
+  @media(min-width: 56rem) {
+	width: 33.3333%;
+  }
+}
+
+.card {
+  background-color: white;
+  border-radius: 0.25rem;
+  box-shadow: 0 20px 40px -14px rgba(0,0,0,0.25);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  &:hover {
+	.card-image {
+	  filter: contrast(100%);
+	}
+  }
+}
+
+.card-title {
+  color: @gray-dark;
+  font-size: 3rem;
+  width: 100%;
+  line-height: 1.2;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+.movie-category, .movie-length {
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  white-space: pre;
+  font-weight: 500;
+  font-size: 1.5rem;
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+}
+
+.card-content a {
+  text-decoration: underline;
+}
+
+.card-text, .card-content > p {
+  flex: 1 1 auto;
+  font-size: 2rem;
+  line-height: 1.5;
+  margin-bottom: 1.25rem;
+  display: flex;
+  
+  width: 100%;
+}
+
+.author {
+  white-space: pre;
+  
+  a {
+	white-space: normal;
+	text-decoration: none;
+	
+	&:hover {
+	  text-decoration: underline;
+	}
+	
+  }
+}
+
+.card-content {
+  /*display: flex;*/
+  display: block;
+  /*flex: 1 1 auto;
+  flex-direction: column;*/
+  padding: 1rem;
+
+  div {
+	display: block;
+	float: left;
+	font-family: 'Roboto','Helvetica Neue', Helvetica, Arial, sans-serif !important;
+  }
+  
+  .description-text {
+	width: 100% !important;
+	font-family: 'Roboto','Helvetica Neue', Helvetica, Arial, sans-serif !important;
+  }
+
+
+  .category-label {
+	text-transform: uppercase;
+	font-size: 1.2rem !important;
+	background-color: #ec6565;
+	padding: 0.5rem 1rem;
+	font-weight: 600;
+	margin-top: 0.5rem;
+	width: auto;
+	color: #fff;
+	float: left;
+	clear: both;
+	display: inline-block;
+  }
+
+}
+
+.card-image {
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  border-top-left-radius: 0.25rem;
+	border-top-right-radius: 0.25rem;
+	width: 100%;
+  filter: contrast(70%);
+  //filter: saturate(180%);
+  overflow: hidden;
+  position: relative;
+  transition: filter 0.5s cubic-bezier(.43,.41,.22,.91);;
+  &::before {
+	content: "";
+	display: block;
+	padding-top: 56.25%; // 16:9 aspect ratio
+  }
+  @media(min-width: 40rem) {
+	&::before {
+	  padding-top: 66.6%; // 3:2 aspect ratio
+	}
+  }
+  //background-image: url(https://unsplash.it/800/600?image=82);
+}
+
+
+.small-card {
+  min-height: 42rem;
+  width: 100%;
+  margin-bottom: 4%;
+  
+  
+  
+  
+  
+  .card-content {
+	
+	.description-text {
+	  // max-height: 7.2rem;
+	  overflow: hidden;
+	}
+
+	p, span {
+	  margin-bottom: 1.5rem;
+	  margin-top: .5rem;
+	  letter-spacing: 0.5px !important;
+	  overflow: hidden;
+	  display: grid;
+	  float: left;
+	  font-size: 1.5rem !important;
+	  -webkit-line-clamp: 3;
+	  width: 100%;
+	  -webkit-box-orient: vertical;
+	  text-align: left !important;
+	  color: #404041 !important;
+	  font-family: 'Roboto','Helvetica Neue', Helvetica, Arial, sans-serif !important;
+	}
+	
+	p:not(:first-child), #share {
+	  display: none;
+	}
+
+	.author {
+	  display: block !important;
+	  font-size: 1.5rem;
+	  margin-bottom: 0.5rem;
+	  white-space: normal;
+	}
+	
+  }
+  
+}
+
+
+
+.large-card {
+  
+  
+  .card-content {
+	margin: 2rem;
+	padding: 0 !important;
+  }
+  
+  font-size: 19px;
+  line-height: 1.5;
+
+  .card-title {
+	font-size: 4rem;
+	letter-spacing: 0.5px;
+  }
+  
+  .description-text {
+	margin-top: 1.5rem;
+	width: 100% !important;
+
+	a {
+	  color: #404041 !important;
+	  text-decoration: underline !important;
+	}
+	
+  }
+
+  .card-image {
+	padding: 2rem 2rem 0 2rem;
+  }
+  
+  
+  span, p, div, h1, h2, h3, h4, h5 {
+	font-family: 'Roboto','Helvetica Neue', Helvetica, Arial, sans-serif !important;
+	letter-spacing: 0.5px !important;
+  }
+  
+  
+  
+  
+  .author {
+	font-size: 2rem;
+	margin-bottom: 0.5rem;
+  }
+
+  .movie-category, .movie-length {
+	margin-bottom: 0;
+  }
+  
+  #share {
+	clear: both;
+	display: inline-block;
+	font-size: 1.5rem;
+  }
+  
+}

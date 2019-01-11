@@ -1,0 +1,37 @@
+extends ../layouts/default
+
+include ../mixins/workshop
+
+block intro
+  .container
+    
+block content
+   
+   .container.acadamy-day
+      if +data.workshops.length > 0
+        h1 1st  Stopmotion Academy
+        p.info-acadamy
+            | A series of workshops in the art of Stop Motion.
+            br
+            | We’re bringing people, art and activism together by working on stop motion animation projects with different techniques and a lot of passion. The practical workshops will be leaded by international artists from illustration, stop motion animation, puppet building, filmmaking, dance performance and soundtrack, and are for everyone interested in practical experience in these fields. Each night, after the workshop, finished pieces will be screened at Boddinale
+            br
+            b.bold-acadamy(style="margin-top:2.5rem") Workshops start at 10am every day
+            br
+            b.bold-acadamy WHERE: Kino Zukunft am Ostkreuz, Laskerstr. 5/ Markgrafendamm, 10245 Berlin
+            br
+            b.bold-acadamy PRICE: 50€ per day - special prices for groups
+            br
+            b.bold-acadamy To apply write us at: 
+             a(href="mailto:stopmotion@boddinale.com") stopmotion@boddinale.com
+            br
+            b.bold-acadamy More Informations: 
+             a(href="https://www.facebook.com/StopMotionAcademy" target="_blank") www.facebook.com/StopMotionAcademy
+            
+        p.director 
+         span Directed by 
+         a(href="https://www.facebook.com/marcusgrysczok", target="_blank") Marcus Grysczok
+         
+        ul.cards(style="width:100%;")
+          each workshop, index in data.workshops
+            li.cards-item
+              +workshop(workshop)

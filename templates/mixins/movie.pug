@@ -20,11 +20,12 @@ mixin movie(movie, truncate)
     .card-content
       a(href="/movie/#{movie.slug}" style="cursor:pointer;")
         .card-title= movie.title
+      p.card-text.author by <a href="#{movie.director.href}"><em>#{movie.director.name}</em></a>
       if movie.award != length
         .category-label.card-text= movie.award
-      p.card-text.author by <a href="#{movie.director.href}"><em>#{movie.director.name}</em></a>
       div.movie-category!= movie.category + (',') + ('&#32;')
       div.movie-length!= movie.length + ('&#39;')
+      br
       //- div.description-text!= movie.description
       
       if movie.externalLink

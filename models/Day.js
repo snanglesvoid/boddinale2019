@@ -26,4 +26,6 @@ Day.add({
     }
 })
 
+Day.defaultColumns= 'title, index, date, picture'
+
 Day.register()

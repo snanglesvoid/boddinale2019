@@ -43,7 +43,7 @@ exports.initLocals = function (req, res, next) {
 	res.locals.snippetEditable = snippetEditable
 	async.each([
 			cb => {
-				keystone.list('Navlink').model.find()
+				keystone.list('Navlink').model.find().sort({sortOrder: 1})
 				.exec((err, links) => {
 					console.log(links)
 					res.locals.navLinks = links || []

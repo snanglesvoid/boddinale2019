@@ -173,7 +173,7 @@ html
         #demo.collapse
           .row
             if imprintText
-              p= imprintText.content
+              p!= imprintText.content
             else
               if user && user.isAdmin
                 a(href="#" onclick='createContent("imprint-text")' style="color: red;") Missing Content, click to create!

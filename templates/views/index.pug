@@ -26,7 +26,7 @@ block intro
         li.col-xs-15.col-lg-15.days
           a(href='/day/' + d.index).days-content
             - var dateText = weekdays[d.date.getDay()]
-            | #{dateText + " " + day._.date.format('D') + 'th'}
+            | #{dateText + " " + d._.date.format('D') + 'th'}
             img(src=d.picture.url)
             //- img(src="http://res.cloudinary.com/doljmvuo6/image/upload/c_crop,f_auto,g_faces,h_450,w_800/v1516819454/j8q24fcembcrt57uqtza.jpg")
     //- -var days = Array.from(new Array(11), (x,i) => i+1)

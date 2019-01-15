@@ -34,24 +34,24 @@ Movie.add({
 	externalLink: {
 		type: Types.Url,
 	},
-	// category: {
-	// 	type: Types.Relationship, ref: 'MovieCategory'
-	// },
+	category: {
+		type: Types.Relationship, ref: 'MovieCategory'
+	},
 	_category: {
 		type: Types.Select,
 		// hidden: true,
 		options: ['Short', 'Feature', 'Music Video', 'Animation', 'Documentary', 'Porn', 'Afterparty', 'Lounge', 'Performance'],
 		hidden: true
 	},
-	category: {
-		type: Types.Select,
-		// hidden: true,
-		options: ['Short', 'Feature', 'Music Video', 'Animation', 'Documentary', 'Porn', 'Afterparty', 'Lounge', 'Performance'],
-		hidden: true
-	},
-	// award: {
-	// 	type: Types.Relationship, ref: 'Award'
+	// category: {
+	// 	type: Types.Select,
+	// 	// hidden: true,
+	// 	options: ['Short', 'Feature', 'Music Video', 'Animation', 'Documentary', 'Porn', 'Afterparty', 'Lounge', 'Performance'],
+	// 	hidden: true
 	// },
+	award: {
+		type: Types.Relationship, ref: 'Award'
+	},
 	_award: {
 		type: Types.Select,
 		options: ['Community Award', 'Loophole Award', 'Best Documentary',
@@ -59,13 +59,13 @@ Movie.add({
 							'Special Mention of the Jury', 'Special Mention of the Loophole',
 							'Independant Life Award', 'Urban Spree Award'], hidden: true
 	},
-	award: {
-		type: Types.Select,
-		options: ['Community Award', 'Loophole Award', 'Best Documentary',
-							'Best Short', 'Best Feature', 'Best Animation', 'Best Music Video',
-							'Special Mention of the Jury', 'Special Mention of the Loophole',
-							'Independant Life Award', 'Urban Spree Award'], hidden: true
-	},
+	// award: {
+	// 	type: Types.Select,
+	// 	options: ['Community Award', 'Loophole Award', 'Best Documentary',
+	// 						'Best Short', 'Best Feature', 'Best Animation', 'Best Music Video',
+	// 						'Special Mention of the Jury', 'Special Mention of the Loophole',
+	// 						'Independant Life Award', 'Urban Spree Award'], hidden: true
+	// },
 	tstImage: { type: Types.CloudinaryImage },
 	votes: { type: Types.Number, default: 0 },
 });

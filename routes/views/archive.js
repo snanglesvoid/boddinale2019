@@ -1,5 +1,5 @@
 const keystone = require('keystone')
-
+const _  = require('lodash')
 
 exports = module.exports = (req, res) => {
     const view = new keystone.View(req, res)

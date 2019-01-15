@@ -13,6 +13,7 @@ block js
 			grecaptcha.execute('6LfIEooUAAAAAJLRJ5_chihbhTpomBrqYG3QZBeV', {action: 'action_name'})
 			.then(function(token) {
 				console.log(token)
+				$('#captcha-token').value(token)
 			});
 		});
 		
@@ -25,6 +26,7 @@ block content
 			.row: .col-sm-8.col-md-5.col-centered
 				form(method='post')
 					input(type='hidden', name='action', value='contact')
+					input(type='hidden', name='token', id='captcha-token')
 					.form-group(class= validationErrors.name ? 'has-error' : null)
 						label Name
 						input(type='text', name='name.full', value=formData['name.full']).form-control

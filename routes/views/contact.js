@@ -16,6 +16,8 @@ exports = module.exports = function (req, res) {
 	// On POST requests, add the Enquiry item to the database
 	view.on('post', { action: 'contact' }, function (next) {
 
+		let token = req.body.token
+		console.log(token)
 		var newEnquiry = new Enquiry.model();
 		var updater = newEnquiry.getUpdateHandler(req);
 		updater.process(req.body, {
@@ -25,7 +27,7 @@ exports = module.exports = function (req, res) {
 		}, function (err) {
 			if (err) {
 				console.log(err)
-				locals.validationErrors.errors = err.errors;
+				locals.validationErrors.errors = err.detail;
 			} else {
 				locals.enquirySubmitted = true;
 			}

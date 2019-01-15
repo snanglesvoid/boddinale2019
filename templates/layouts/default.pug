@@ -124,15 +124,16 @@ html
     -var sponsors = partners.filter(x => x.sponsor)
     -var chunks = _.chunk(partners.filter(x => !x.sponsor), 3)
     .row
-      p partners
-        each chunk in chunks
-          .container: .footer
-            each partner in chunk
-              .col-sm-6.col-md-4
-                a(href= partner.linkUrl, target="_blank")
-                  img(src=partner.logo.url)
+      each chunk, index in chunks
+        .container: .footer
+          if index == 0
+            p partners
+          each partner in chunk
+            .col-sm-6.col-md-4
+              a(href= partner.linkUrl, target="_blank")
+                img(src=partner.logo.url)
           
-    //- .container: .footer
+    .container: .footer
       p sponsored by
       .row
         each partner in sponsors

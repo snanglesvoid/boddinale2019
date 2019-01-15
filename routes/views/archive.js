@@ -26,8 +26,7 @@ exports = module.exports = (req, res) => {
     }
     locals.data.years = years
 
-    view.query('data.awards', keystone.list('Award').model.find())
-    view.query('data.categories', keystone.list('MovieCategory').model.find())
+  
 
     let query = keystone.list('Movie').paginate({
         page: req.query.page || 1,
@@ -54,19 +53,32 @@ exports = module.exports = (req, res) => {
 
     
     view.on('init', next => {
+        keystone.list('Award').model.find()
+        .exec((err, awards) => {
+            if (err) return next(err)
+            locals.data.awards = awards
+        keystone.list('MovieCategory').model.find()
+        .exec((err, categories) => {
+            if (err) return next(err)
+            locals.data.categories = categories
+
+        if (req.query.a) {
+            let a = _.find(locals.data.awards, a => a.title == req.query.a)
+            query.where('award', a._id)
+        }
+        if (req.query.c) {
+            let c = _.find(locals.data.categories, c => c.name == req.query.c)
+            query.where('category', c._id)
+        }
         query.populate('category award')
         query.exec((err, docs) => {
             if (docs && docs.length > 0) {
                 docs.results.forEach(d => d.format())
             }
-            if (req.query.a) {
-                docs = docs.filter(x => x.award.title == req.query.a)
-            }
-            if (req.query.c) {
-                docs = docs.filter(x => x.category.name == req.query.c)
-            }
             locals.data.movies = docs
             next(err)
+        })
+        })    
         })
     })
 

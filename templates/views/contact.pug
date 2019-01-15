@@ -5,8 +5,9 @@ include ../mixins/static-intro
 block intro
 	+static-intro("Contact Us")
 	
-block js
+block head
 	script(src='https://www.google.com/recaptcha/api.js?render=6LfIEooUAAAAAJLRJ5_chihbhTpomBrqYG3QZBeV')
+block js
 	script.
 		grecaptcha.ready(function() {
 			grecaptcha.execute('6LfIEooUAAAAAJLRJ5_chihbhTpomBrqYG3QZBeV', {action: 'action_name'})

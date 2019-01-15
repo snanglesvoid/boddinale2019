@@ -54,7 +54,9 @@ exports = module.exports = (req, res) => {
 
     view.on('init', next => {
         query.exec((err, docs) => {
-            docs.results.forEach(d => d.format())
+            if (docs && docs.length > 0) {
+                docs.results.forEach(d => d.format())
+            }
             locals.data.movies = docs
             next(err)
         })

@@ -30,7 +30,7 @@ exports = module.exports = (req, res) => {
             //         console.log(c.name)
             //     }
             // })
-            let a = _awards.find(awards, x => x.title == movie._award)
+            let a = _.find(awards, x => x.title == movie._award)
             if (a) movie.award = a._id
             movie.save(cb)
         }, err => {

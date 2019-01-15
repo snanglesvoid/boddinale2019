@@ -87,10 +87,21 @@ exports = module.exports = (req, res) => {
             }
             let ppage = 12
             let total  = docs.length
-            let nPages = Math.min(Math.ceil(total / ppage), 10)
+            let nPages = Math.ceil(total / ppage)
+            let maxPages = 10
+            req.query.page = req.query.page || 1
+            let pages = []
+
+            if (req.query.page >= maxPages - 2 && nPages > maxPages) {
+                for (let i = req.query.page + maxPages - 2; i <= req.query.page + 2 && i <= maxPages; ++i) {
+                    pages.push(i)
+                }
+            }
+            else {
+                pages = (Array.apply(null, {length: Math.min(nPages, maxPages)}).map(Number.call, Number)).map(x => x+1)
+            }
 
             let results = []
-            req.query.page = req.query.page || 1
             for (let i = (req.query.page - 1) * ppage; i < total && i < req.query.page * ppage; ++i) {
                 results.push(docs[i])
             }
@@ -99,9 +110,10 @@ exports = module.exports = (req, res) => {
                 results: results,
                 total : total,
                 totalPages : nPages,
+                currentPage : req.query.page,
                 previous : req.query.page == 1 ? false : req.query.page - 1,
                 next : req.query.page >= nPages ? false : req.query.page + 1,
-                pages : (Array.apply(null, {length: nPages}).map(Number.call, Number)).map(x => x+1)
+                pages : pages
             }
             next(err)
         })   

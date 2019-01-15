@@ -9,9 +9,10 @@ const PressLink = new keystone.List('PressLink', {
 PressLink.add({
     title: { type: Types.Text },
     linkText: { type: Types.Text },
-    linkUrl: { type: Types.Text }
+    linkUrl: { type: Types.Text },
+    sortOrder: { type: Types.Number }
 })
 
-PressLink.defaultColumns= 'title, linkText, linkUrl'
+PressLink.defaultColumns= 'title, linkText, linkUrl, sortOrder'
 
 PressLink.register()

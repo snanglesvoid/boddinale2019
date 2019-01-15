@@ -5,7 +5,7 @@ exports = module.exports = (req, res) => {
     let locals = res.locals
     locals.section = 'press'
 
-    view.query('presslinks', keystone.list('PressLink').model.find())
+    view.query('presslinks', keystone.list('PressLink').model.find().sort({sortOrder: 1}))
 
     view.render('press')
 }

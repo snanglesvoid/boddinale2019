@@ -6,7 +6,7 @@ exports = module.exports = (req, res) => {
     locals.section = 'jury'
 
     view.query('thanks', keystone.list('Content').model.findOne({slug: 'jury-special-thanks'}))
-    view.query('members', keystone.list('JuryMember').model.find())
+    view.query('members', keystone.list('JuryMember').model.find().sort({sortOrder: 1}))
 
     view.render('jury')
 }

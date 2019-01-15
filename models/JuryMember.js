@@ -8,9 +8,10 @@ const JuryMember = new keystone.List('JuryMember', {
 JuryMember.add({
     name:     { type: Types.Name, required: true, index: true },
     linkText: { type: Types.Text },
-    linkUrl:  { type: Types.Url }
+    linkUrl:  { type: Types.Url },
+    sortOrder:    { type: Types.Number }
 })
 
-JuryMember.defaultColumns= 'name, linkText, linkUrl'
+JuryMember.defaultColumns= 'name, linkText, linkUrl, order'
 
 JuryMember.register()

@@ -81,6 +81,7 @@ function toTitleCase (str) {
 }
 
 Movie.schema.methods.format = function () {
+	return
 	this.director.name = toTitleCase(this.director.name).replace(/\s\s+/g, ' ');
 	this.title = this.title.toUpperCase();
 };

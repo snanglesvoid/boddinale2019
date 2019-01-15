@@ -41,6 +41,7 @@ Movie.add({
 		type: Types.Select,
 		// hidden: true,
 		options: ['Short', 'Feature', 'Music Video', 'Animation', 'Documentary', 'Porn', 'Afterparty', 'Lounge', 'Performance'],
+		hidden: true
 	},
 	award: {
 		type: Types.Relationship, ref: 'Award'
@@ -50,7 +51,7 @@ Movie.add({
 		options: ['Community Award', 'Loophole Award', 'Best Documentary',
 							'Best Short', 'Best Feature', 'Best Animation', 'Best Music Video',
 							'Special Mention of the Jury', 'Special Mention of the Loophole',
-							'Independant Life Award', 'Urban Spree Award'],
+							'Independant Life Award', 'Urban Spree Award'], hidden: true
 	},
 	tstImage: { type: Types.CloudinaryImage },
 	votes: { type: Types.Number, default: 0 },

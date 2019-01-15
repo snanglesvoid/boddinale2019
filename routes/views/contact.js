@@ -18,7 +18,7 @@ exports = module.exports = function (req, res) {
 
 		var newEnquiry = new Enquiry.model();
 		var updater = newEnquiry.getUpdateHandler(req);
-
+g
 		updater.process(req.body, {
 			flashErrors: true,
 			fields: 'name, email, phone, enquiryType, message',
@@ -26,7 +26,7 @@ exports = module.exports = function (req, res) {
 		}, function (err) {
 			if (err) {
 				console.log(err)
-				locals.validationErrors = err.errors;
+				locals.validationErrors.errors = err.errors;
 			} else {
 				locals.enquirySubmitted = true;
 			}

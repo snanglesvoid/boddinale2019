@@ -43,7 +43,7 @@ Movie.add({
 		options: ['Short', 'Feature', 'Music Video', 'Animation', 'Documentary', 'Porn', 'Afterparty', 'Lounge', 'Performance'],
 	},
 	award: {
-		type: Types.Relationship. ref: 'Award'
+		type: Types.Relationship, ref: 'Award'
 	},
 	_award: {
 		type: Types.Select,

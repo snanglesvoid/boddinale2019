@@ -90,17 +90,18 @@ exports = module.exports = (req, res) => {
             let nPages = Math.ceil(total / ppage)
             let maxPages = 10
             req.query.page = req.query.page || 1
+            let page = +req.query.page
             let pages = []
 
-            if (req.query.page >= maxPages - 2 && nPages > maxPages) {
-                pages = (Array.apply(null, {length: Math.min(nPages, maxPages)}).map(Number.call, Number)).map(x => x+req.query.page + ppage - 2)
+            if (page >= maxPages - 2 && nPages > maxPages) {
+                pages = (Array.apply(null, {length: Math.min(nPages, maxPages)}).map(Number.call, Number)).map(x => (x + (+page) + ppage - 2))
             }
             else {
                 pages = (Array.apply(null, {length: Math.min(nPages, maxPages)}).map(Number.call, Number)).map(x => x+1)
             }
 
             let results = []
-            for (let i = (req.query.page - 1) * ppage; i < total && i < req.query.page * ppage; ++i) {
+            for (let i = (page - 1) * ppage; i < total && i < page * ppage; ++i) {
                 results.push(docs[i])
             }
 
@@ -108,9 +109,9 @@ exports = module.exports = (req, res) => {
                 results: results,
                 total : total,
                 totalPages : nPages,
-                currentPage : req.query.page,
-                previous : req.query.page == 1 ? false : req.query.page - 1,
-                next : req.query.page >= nPages ? false : req.query.page + 1,
+                currentPage : page,
+                previous : page == 1 ? false : page - 1,
+                next : page >= nPages ? false : page + 1,
                 pages : pages
             }
             next(err)

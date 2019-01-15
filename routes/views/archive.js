@@ -72,7 +72,7 @@ exports = module.exports = (req, res) => {
             let c = _.find(locals.data.categories, c => c.name == req.query.c)
             query.where('category', c._id)
         }
-        query.skip(req.query.page * 10).limit(10)
+        // query.skip(req.query.page * 10).limit(10)
         query.populate('category award')    
         console.log('built query')
         next()
@@ -88,7 +88,7 @@ exports = module.exports = (req, res) => {
             let total  = docs.length
             let nPages = Math.ceil(total / 10)
             locals.data.movies = {
-                results: docs || [],
+                results: _.first(_.last(docs || [], total - req.query.page * 10), 10),
                 total : total,
                 totalPages : nPages,
                 previous : req.query.page == 1 ? false : req.query.page - 1,

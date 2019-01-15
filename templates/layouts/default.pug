@@ -123,7 +123,7 @@ html
     FOOTER
     -var sponsors = partners.filter(x => x.sponsor)
     -partners = partners.filter(x => !x.sponsor)
-    .container: .footer
+    //- .container: .footer
       p partners
         while partners.length > 0
         -var ps = _.first(partners, 3)
@@ -134,7 +134,7 @@ html
               a(href= partner.linkUrl, target="_blank")
                 img(src=partner.logo.url)
           
-    .container: .footer
+    //- .container: .footer
       p sponsored by
       .row
         each partner in sponsors

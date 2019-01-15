@@ -92,7 +92,7 @@ exports = module.exports = (req, res) => {
                 total : total,
                 totalPage : nPages,
                 previous : req.query.page == 1 ? false : req.query.page - 1,
-                next : req.query.page >= nPages ? false : req.quer.page + 1,
+                next : req.query.page >= nPages ? false : req.query.page + 1,
                 pages : (Array.apply(null, {length: nPages}).map(Number.call, Number)).map(x => x+1)
             }
             next(err)

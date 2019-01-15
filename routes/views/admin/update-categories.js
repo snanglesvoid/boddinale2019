@@ -1,5 +1,6 @@
 const keystone = require('keystone')
 const async    = require('async')
+const _        = require('lodash')
 
 exports = module.exports = (req, res) => {
     let data = {}
@@ -23,21 +24,14 @@ exports = module.exports = (req, res) => {
             // })
             // return movie.save(cb)
             // // return cb(null)
-            console.log(movie._category, movie._award)
             // categories.forEach(c => {
             //     if (c.name == movie._category) {
             //         movie.category = c._id
             //         console.log(c.name)
             //     }
             // })
-            awards.forEach(a => {
-                if (a.name == movie._award) {
-                    movie.award = a._id
-                    console.log(a.name)
-                }
-            })
-            console.log(movie.category, movie.award)
-            console.log('\n\n')
+            let a = _awards.find(awards, x => x.title == movie._award)
+            if (a) movie.award = a._id
             movie.save(cb)
         }, err => {
             if (err) return res.status(500).send(err)

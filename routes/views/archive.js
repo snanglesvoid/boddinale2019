@@ -93,9 +93,7 @@ exports = module.exports = (req, res) => {
             let pages = []
 
             if (req.query.page >= maxPages - 2 && nPages > maxPages) {
-                for (let i = req.query.page + maxPages - 2; i <= req.query.page + 2 && i <= maxPages; ++i) {
-                    pages.push(i)
-                }
+                pages = (Array.apply(null, {length: Math.min(nPages, maxPages)}).map(Number.call, Number)).map(x => x+req.query.page + ppage - 2)
             }
             else {
                 pages = (Array.apply(null, {length: Math.min(nPages, maxPages)}).map(Number.call, Number)).map(x => x+1)

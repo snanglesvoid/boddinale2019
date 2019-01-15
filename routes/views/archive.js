@@ -87,7 +87,7 @@ exports = module.exports = (req, res) => {
             }
             let ppage = 12
             let total  = docs.length
-            let nPages = Math.max(Math.ceil(total / ppage), 10)
+            let nPages = Math.min(Math.ceil(total / ppage), 10)
 
             let results = []
             req.query.page = req.query.page || 1

@@ -47,6 +47,7 @@ function isGMailLink (url) {
 }
 
 function insertData (year, callback) {
+	console.log(dataPath)
 	fs.readFile(dataPath, 'utf-8', (err, data) => {
 		if (err) return callback(err);
 		let moviesJSON = JSON.parse(data);

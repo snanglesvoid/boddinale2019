@@ -25,6 +25,7 @@ mixin movie(movie, truncate)
       
       if movie.category
         div.movie-category!= movie.category.name + (',') + ('&#32;')
+        div.movie-category!= JSON.stringify(movie.category)
       if movie.length && movie.length > 0
         div.movie-length!= movie.length + ('&#39;')
       if movie.award && movie.award.name

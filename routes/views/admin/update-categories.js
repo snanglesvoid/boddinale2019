@@ -19,7 +19,12 @@ exports = module.exports = (req, res) => {
             let oldCat = movie.category
             let oldAwa = movie.award
             console.log(movie.title, movie.category, movie.award)
-            return cb(null)
+            movie.set({
+                _award: movie.award,
+                _categori: movie.category,
+            })
+            return movie.save(cb)
+            // return cb(null)
             categories.forEach(c => {
                 if (c.name == oldCat) {
                     movie.category = c._id

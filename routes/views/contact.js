@@ -26,7 +26,8 @@ exports = module.exports = function (req, res) {
 				response: token
 			}
 		}, function(err, res, body) {
-			console.log(err, res, body)
+			if (err) console.error(err)
+			else console.log(body)
 			// if (!err && res.statusCode === 200) {
 			// 	funcTwo(body, function(err, output) {
 			// 		console.log(err, output);

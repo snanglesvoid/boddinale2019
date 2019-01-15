@@ -1,6 +1,8 @@
 mixin directorName(obj)
-  span.
-    by&nbsp;<a href="#{obj.href}"><em>#{obj.name}</em></a>
+  span
+    | by&nbsp;
+    a(href= obj.href)
+      em= obj.name
 
 mixin videoEmbed(url)
   .vid-wrapper
@@ -9,8 +11,8 @@ mixin videoEmbed(url)
       iframe(src=url frameborder="0" allowfullscreen)
 
 mixin workshop(workshop, truncate)
- .card(class="#{truncate?'large-card':'small-card'}")
-    a.movie(href="/workshop/#{workshop.slug}" style="cursor:pointer;")
+ .card(class= truncate ?'large-card':'small-card')
+    a.movie(href="/workshop/" + workshop.slug style="cursor:pointer;")
       if workshop.display.image.url
         img.card-image(src=workshop._.display.image.crop(800,450)).img-responsive
       else if workshop.display.youtube
@@ -18,10 +20,15 @@ mixin workshop(workshop, truncate)
       else if workshop.display.vimeo
         +videoEmbed(workshop.display.vimeo)
     .card-content
-      a(href="/workshop/#{workshop.slug}" style="cursor:pointer;")
+      a(href="/workshop/" + workshop.slug style="cursor:pointer;")
         .card-title= workshop.title
-      p.card-text.author by <a href="#{workshop.director.href}"><em>#{workshop.director.name}</em></a>
+      p.card-text.author
+        | by
+        a(href= workshop.director.href)
+          em= workshop.director.name
       div.description-text!= workshop.description
       if workshop.externalLink
-        p.card-text <a href="#{workshop.externalLink}" target="_blank"><em>#{workshop.externalLink}</em></a>
+        p.card-text
+          a(href= workshop.externalLink target="_blank")
+            em= workshop.externalLink
       #share

@@ -1,6 +1,8 @@
 mixin directorName(obj)
-  span.
-    by&nbsp;<a href="#{obj.href}"><em>#{obj.name}</em></a>
+  span
+    | by&nbsp;
+    a(href= obj.href)
+      em= obj.name
 
 mixin videoEmbed(url)
   .vid-wrapper
@@ -10,7 +12,7 @@ mixin videoEmbed(url)
 
 mixin movie(movie, truncate)
  .card(class= truncate?  'large-card':'small-card')
-    a.movie(href="/movie/#{movie.slug}" style="cursor:pointer;")
+    a.movie(href="/movie/" + movie.slug style="cursor:pointer;")
       if movie.display.youtube
         +videoEmbed(movie.display.youtube)
       else if movie.display.vimeo
@@ -21,7 +23,10 @@ mixin movie(movie, truncate)
       a(href="/movie/" + movie.slug,  style="cursor:pointer;")
         .card-title= movie.title
       if movie.director && movie.director.name
-        p.card-text.author by <a href="#{movie.director.href}"><em>#{movie.director.name}</em></a>
+        p.card-text.author
+          | by
+          a(href= movie.director.href)
+            em= movie.director.name
       
       if movie.category
         div.movie-category!= movie.category.name + (',') + ('&#32;')

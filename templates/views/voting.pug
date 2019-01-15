@@ -38,6 +38,6 @@ block content
               div.movie-vote(style="display: inline-flex; width: 100%; justify-content: space-between;")
                 div(style="width: 5%; font-size: 1.8rem;")= '#' + (index+1) + ' '
                 div(style="width: 80%; text-align:left;")
-                  a(href="/movie/#{movie.slug}" style="cursor:pointer;")
+                  a(href="/movie/" + movie.slug style="cursor:pointer;")
                     h3= movie.title
                 div.vote-n(style="width: 12%; font-size:1.8rem;")= +movie.votes + (movie.votes == 1 ? ' vote' : ' votes')

@@ -29,7 +29,7 @@ exports = module.exports = (req, res) => {
             console.log('Movie: ', movie.title, movie._category)
             let c = _.find(categories, x => x.name == movie._category)
             if (c) {
-                movie.category = c._d
+                movie.category = c._id
                 console.log('found c: ', c.name)
             }
             let a = _.find(awards, x => x.title == movie._award)

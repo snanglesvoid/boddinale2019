@@ -57,6 +57,7 @@ exports = module.exports = function (app) {
 	app.get('/api/partners', routes.api.partners)
 	app.get('/api/jury', routes.api.jury)
 	app.all('/admin/upload', middleware.requireUser, routes.views.admin.upload)
+	app.get('/admin/update-categories', middleware.requireUser, routes.views.admin['update-categories'])
 	// app.get('/api/l')
 
 	// NOTE: To protect a route so that only admins can see it, use the requireUser middleware:

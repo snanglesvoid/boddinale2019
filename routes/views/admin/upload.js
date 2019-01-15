@@ -49,7 +49,7 @@ function isGMailLink (url) {
 function insertData (year, callback) {
 	fs.readFile(dataPath, 'utf-8', (err, data) => {
 		if (err) return callback(err);
-		let moviesJSON = JSON.parse(data).data;
+		let moviesJSON = JSON.parse(data);
 		console.log('moviesJSON', moviesJSON)
 		if (!moviesJSON) {
 			return callback(new Error('nope'))

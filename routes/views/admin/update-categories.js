@@ -26,9 +26,12 @@ exports = module.exports = (req, res) => {
             // return movie.save(cb)
 
             //instantiate new
+            console.log('Movie: ', movie.title, movie._category)
             let c = _.find(categories, x => x.name == movie._category)
             if (c) movie.category = c._d
+            console.log('found c: ', c.name)
             let a = _.find(awards, x => x.title == movie._award)
+            console.log('found a:', a.title)
             if (a) movie.award = a._id
             movie.save(cb)
         }, err => {

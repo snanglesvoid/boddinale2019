@@ -52,6 +52,8 @@ exports = module.exports = (req, res) => {
 						})
 						.populate('award category')
 						.exec((err, movies) => {
+							if (err) return res.status(500).send(err)
+							if (!movies) movies = []
 							movies.forEach(m => m.format())
 							// locals.data.movies = movies.sort((a,b) => {
 							// 	let i = awards.indexOf(a.award)

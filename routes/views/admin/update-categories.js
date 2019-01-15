@@ -22,7 +22,7 @@ exports = module.exports = (req, res) => {
             console.log(movie._category, movie._award)
             movie.set({
                 _award: movie.award,
-                _categori: movie.category,
+                _category: movie.category,
             })
             return movie.save(cb)
             // return cb(null)

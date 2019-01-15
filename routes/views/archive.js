@@ -85,12 +85,13 @@ exports = module.exports = (req, res) => {
             if (docs && docs.length > 0) {
                 docs.forEach(d => d.format())
             }
+            let ppage = 12
             let total  = docs.length
-            let nPages = Math.ceil(total / 10)
+            let nPages = Math.max(Math.ceil(total / ppage), 10)
 
             let results = []
             req.query.page = req.query.page || 1
-            for (let i = (req.query.page - 1) * 10; i < total && i < req.query.page * 10; ++i) {
+            for (let i = (req.query.page - 1) * ppage; i < total && i < req.query.page * ppage; ++i) {
                 results.push(docs[i])
             }
 

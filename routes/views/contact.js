@@ -29,7 +29,7 @@ exports = module.exports = function (req, res) {
 
 		var post_options = {
 			host: 'https://www.google.com',
-			port: '80',
+			port: '443',
 			path: '/recaptcha/api/siteverify',
 			method: 'POST',
 			headers: {

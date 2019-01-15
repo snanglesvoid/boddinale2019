@@ -81,6 +81,7 @@ exports = module.exports = (req, res) => {
                 }
                 // query.skip(req.query.page * 10).limit(10)
                 query.populate('category award')
+                cb()
             }
         )
     }

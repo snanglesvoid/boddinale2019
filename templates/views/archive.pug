@@ -33,7 +33,12 @@ block js
     }
     function selectYear (div) {
       let k = +($(div).attr('data-year'))
-      query.y = k.toString()
+      if (k > 0) {
+        query.y = k.toString()
+      }
+      else {
+        query.y = ''
+      }
       delete query.page
       var href = removeQuery(window.location.href)
       window.location.href = href + queryString()
@@ -95,7 +100,7 @@ block content
             style="cursor:pointer; border:#{data.query.y == year ? '1px solid #c1c1c1;' : 'none'}"
           )= year
           span &nbsp;&nbsp;
-      li(style="cursor:pointer; display:inline-block; padding-left:0;" data-year='0'): a(onclick="selectYear()") Any
+      li(style="cursor:pointer; display:inline-block; padding-left:0;" ): a(onclick="selectYear(this)" data-year='0') Any
     //- p.counter #{data.movies.total} Movies found
     
     if +data.movies.total > 0

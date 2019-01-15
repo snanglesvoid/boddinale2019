@@ -15,7 +15,7 @@ block content
     p.title-top Boddinale
   .container: .jumbotron.jury(style="padding-top:1rem")
     if thanks
-      p.fixed-helpers!= thanks.content
+      .fixed-helpers!= thanks.content
     else
       if user && user.isAdmin
         a(href="#" onclick="createContent('jury-special-thanks')" style="color: red;") Missing Content. Click to create

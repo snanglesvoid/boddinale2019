@@ -133,14 +133,14 @@ html
               a(href= partner.linkUrl, target="_blank")
                 img(src=partner.logo.url)
           
-    .container: .footer
-      p sponsored by
-      .row
-        each partner in sponsors
-          .col-sm-6.col-md-4
-          .col-sm-6.col-md-4
-            a(href= partner.linkUrl, target="_blank")
-              img(src=partner.logo.url)
+    .row
+      .container: .footer
+        p sponsored by
+          each partner in sponsors
+            .col-sm-6.col-md-4
+            .col-sm-6.col-md-4
+              a(href= partner.linkUrl, target="_blank")
+                img(src=partner.logo.url)
     //- .container: .footer
     //-   p partners
     //-   .col-sm-6.col-md-4

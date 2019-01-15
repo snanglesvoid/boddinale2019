@@ -4,7 +4,7 @@ include ../mixins/static-intro
 mixin jury-item(o)
   span(style="font-size: 16px;"): strong
     span(style="color: #993300;")= o.name.first + " " + o.name.last
-  a(href="#{o.linkUrl}" target="_blank")= o.linkText
+  a(href= o.linkUrl target="_blank")= o.linkText
   br
 
 block intro

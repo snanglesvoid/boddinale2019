@@ -51,6 +51,11 @@ exports = module.exports = function (app) {
 	app.get('/api/movies', routes.api.movies)
 	app.get('/api/archive', routes.api.archive)
 	app.get('/api/vote', routes.api.vote)
+	app.get('/api/contents', routes.api.contents)
+	app.get('/api/snippets', routes.api.snippets)
+	app.get('/api/presslinks', routes.api.presslinks)
+	app.get('/api/partners', routes.api.partners)
+	app.get('/api/jury', routes.api.jury)
 	app.all('/admin/upload', middleware.requireUser, routes.views.admin.upload)
 	// app.get('/api/l')
 

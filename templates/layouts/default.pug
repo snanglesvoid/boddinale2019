@@ -121,18 +121,16 @@ html
 
 
     FOOTER
-    //- -var sponsors = partners.filter(x => x.sponsor)
-    //- -partners = partners.filter(x => !x.sponsor)
-    //- .container: .footer
-    //-   p partners
-    //-     while partners.length > 0
-    //-     -var ps = _.first(partners, 3)
-    //-     -partners = _.last(partners, partners.length - 3)
-    //-     .row
-    //-       each partner in ps
-    //-         .col-sm-6.col-md-4
-    //-           a(href= partner.linkUrl, target="_blank")
-    //-             img(src=partner.logo.url)
+    -var sponsors = partners.filter(x => x.sponsor)
+    -var chunks = _.chunk(partners.filter(x => !x.sponsor), 3)
+    .row
+      p partners
+        each chunk in chunks
+          .container: .footer
+            each partner in chunk
+              .col-sm-6.col-md-4
+                a(href= partner.linkUrl, target="_blank")
+                  img(src=partner.logo.url)
           
     //- .container: .footer
       p sponsored by

@@ -45,7 +45,7 @@ exports.initLocals = function (req, res, next) {
 			cb => {
 				keystone.list('Navlink').model.find().sort({sortOrder: 1})
 				.exec((err, links) => {
-					console.log(links)
+					// console.log(links)
 					res.locals.navLinks = links || []
 					cb(err)
 				})

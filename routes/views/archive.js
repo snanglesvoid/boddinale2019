@@ -90,7 +90,7 @@ exports = module.exports = (req, res) => {
             locals.data.movies = {
                 results: docs || [],
                 total : total,
-                totalPage : nPages,
+                totalPages : nPages,
                 previous : req.query.page == 1 ? false : req.query.page - 1,
                 next : req.query.page >= nPages ? false : req.query.page + 1,
                 pages : (Array.apply(null, {length: nPages}).map(Number.call, Number)).map(x => x+1)

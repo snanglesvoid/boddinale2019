@@ -12,9 +12,8 @@ block content
       div!= data
     else
       p Boddinale they say:
-      ul
         each presslink in presslinks
-          li= presslink.title
+          p= presslink.title
             | -&nbsp;
             a(href= presslink.linkUrl)= presslink.linkText
       //- ul

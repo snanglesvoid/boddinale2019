@@ -3,6 +3,7 @@ const _  = require('lodash')
 const async = require('async')
 
 exports = module.exports = (req, res) => {
+    return res.json('ok')
     const view = new keystone.View(req, res)
     const locals = res.locals
 

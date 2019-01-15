@@ -16,26 +16,28 @@ exports = module.exports = (req, res) => {
         let categories = data['MovieCategory']
 
         async.each(movies, (movie, cb) => {
-            let oldCat = movie.category
-            let oldAwa = movie.award
-            console.log(movie.category, movie.award)
+            
+            // movie.set({
+            //     _award: movie.award,
+            //     _category: movie.category,
+            // })
+            // return movie.save(cb)
+            // // return cb(null)
             console.log(movie._category, movie._award)
-            movie.set({
-                _award: movie.award,
-                _category: movie.category,
-            })
-            return movie.save(cb)
-            // return cb(null)
             categories.forEach(c => {
-                if (c.name == oldCat) {
+                if (c.name == movie._category) {
                     movie.category = c._id
+                    console.log(c.name)
                 }
             })
             awards.forEach(a => {
-                if (a.name == oldAwa) {
+                if (a.name == movie._award) {
                     movie.award = a._id
+                    console.log(a.name)
                 }
             })
+            console.log(movie.category, movie.award)
+            console.log('\n\n')
             movie.save(cb)
         }, err => {
             if (err) return res.status(500).send(err)

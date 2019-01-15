@@ -35,8 +35,7 @@ Movie.add({
 		type: Types.Url,
 	},
 	category: {
-		type: Types.Select,
-		options: ['Short', 'Feature', 'Music Video', 'Animation', 'Documentary', 'Porn', 'Afterparty', 'Lounge', 'Performance'],
+		type: Types.Relationship, ref: 'MovieCategory'
 	},
 	_category: {
 		type: Types.Select,
@@ -44,12 +43,7 @@ Movie.add({
 		options: ['Short', 'Feature', 'Music Video', 'Animation', 'Documentary', 'Porn', 'Afterparty', 'Lounge', 'Performance'],
 	},
 	award: {
-		type: Types.Select,
-		// hidden: true,
-		options: ['Community Award', 'Loophole Award', 'Best Documentary',
-							'Best Short', 'Best Feature', 'Best Animation', 'Best Music Video',
-							'Special Mention of the Jury', 'Special Mention of the Loophole',
-							'Independant Life Award', 'Urban Spree Award'],
+		type: Types.Relationship. ref: 'Award'
 	},
 	_award: {
 		type: Types.Select,

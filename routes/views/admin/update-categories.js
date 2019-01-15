@@ -24,12 +24,12 @@ exports = module.exports = (req, res) => {
             // return movie.save(cb)
             // // return cb(null)
             console.log(movie._category, movie._award)
-            categories.forEach(c => {
-                if (c.name == movie._category) {
-                    movie.category = c._id
-                    console.log(c.name)
-                }
-            })
+            // categories.forEach(c => {
+            //     if (c.name == movie._category) {
+            //         movie.category = c._id
+            //         console.log(c.name)
+            //     }
+            // })
             awards.forEach(a => {
                 if (a.name == movie._award) {
                     movie.award = a._id

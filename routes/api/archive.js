@@ -7,7 +7,7 @@ exports = module.exports = function (req, res) {
 		// maxPages: 10,
 	})
 	.sort({
-		'screenTime.year': 1,
+		'screenTime.year': -1,
 		'screenTime.day': 1,
 		'screenTime.position': 1,
 	});

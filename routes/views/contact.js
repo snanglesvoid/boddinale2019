@@ -20,10 +20,12 @@ exports = module.exports = function (req, res) {
 		let token = req.body.token
 
 		console.log(token)
-		request.post('https://www.google.com/recaptcha/api/siteverify', {
-			json: true, input : {
+		request.post({
+			url: 'https://www.google.com/recaptcha/api/siteverify',
+			formData: {
 				secret: '6LfIEooUAAAAANek286UrfA9bMuugyuWZLh0apTL',
 				response: token
+
 			}
 		}, function(err, res, body) {
 			if (err) console.error(err)

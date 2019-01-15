@@ -46,12 +46,14 @@ exports = module.exports = (req, res) => {
         query.where({'screenTime.day': +req.query.d })
     }
     if (req.query.a) {
-        query.where({ award: req.query.a })
+        query.where({ 'award.name': req.query.a })
     }
     if (req.query.c) {
-        query.where({ category: req.query.c })
+        query.where({ 'category.name': req.query.c })
     }
 
+    req.query.populate('category, award')
+    
     view.on('init', next => {
         query.exec((err, docs) => {
             if (docs && docs.length > 0) {

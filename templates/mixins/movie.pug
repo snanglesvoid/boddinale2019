@@ -27,9 +27,9 @@ mixin movie(movie, truncate)
         div.movie-category!= movie.category.name + (',') + ('&#32;')
       if movie.length && movie.length > 0
         div.movie-length!= movie.length + ('&#39;')
-      if movie.award && movie.award.name
+      if movie.award && movie.award.title
         div(style='width: 100%;')
-          .category-label.card-text= movie.award.name
+          .category-label.card-text= movie.award.title
       //- div.description-text!= movie.description
       
       if movie.externalLink

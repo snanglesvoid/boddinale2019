@@ -87,8 +87,15 @@ exports = module.exports = (req, res) => {
             }
             let total  = docs.length
             let nPages = Math.ceil(total / 10)
+
+            let results = []
+            req.query.page = req.query.page || 1
+            for (let i = (req.query.page - 1) * 10; i < total && i < req.query.page * 10; ++i) {
+                results.push(docs[i])
+            }
+
             locals.data.movies = {
-                results: _.first(_.last(docs || [], total - req.query.page * 10), 10),
+                results: results,
                 total : total,
                 totalPages : nPages,
                 previous : req.query.page == 1 ? false : req.query.page - 1,

@@ -52,8 +52,8 @@ exports = module.exports = (req, res) => {
         query.where({ 'category.name': req.query.c })
     }
 
-    req.query.populate('category, award')
-    
+    query.populate('category, award')
+
     view.on('init', next => {
         query.exec((err, docs) => {
             if (docs && docs.length > 0) {

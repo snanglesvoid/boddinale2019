@@ -21,8 +21,10 @@ exports = module.exports = function (req, res) {
 
 		console.log(token)
 		request.post('https://www.google.com/recaptcha/api/siteverify', {
-			secret: '6LfIEooUAAAAANek286UrfA9bMuugyuWZLh0apTL',
-			response: token
+			json: true, input : {
+				secret: '6LfIEooUAAAAANek286UrfA9bMuugyuWZLh0apTL',
+				response: token
+			}
 		}, function(err, res, body) {
 			console.log(err, res, body)
 			// if (!err && res.statusCode === 200) {
@@ -31,22 +33,6 @@ exports = module.exports = function (req, res) {
 			// 	});
 			// }
 		});
-
-	
-		var post_options = {
-			host: 'https://www.google.com',
-			port: '443',
-			path: '/recaptcha/api/siteverify',
-			method: 'POST',
-			headers: {
-				'Content-Type': 'application/x-www-form-urlencoded',
-				'Content-Length': Buffer.byteLength(post_data)
-			}
-		};
-	  
-		// post the data
-		post_req.write(post_data);
-		post_req.end();
 
 
 		var newEnquiry = new Enquiry.model();

@@ -1,5 +1,6 @@
 const keystone = require('keystone')
 const _  = require('lodash')
+const async = require('async')
 
 exports = module.exports = (req, res) => {
     const view = new keystone.View(req, res)
@@ -28,25 +29,12 @@ exports = module.exports = (req, res) => {
 
   
 
-    let query = keystone.list('Movie').paginate({
-        page: req.query.page || 1,
-        perPage: 12,
-        maxPages: 10,
-    }).sort({
-        'screenTime.year': 1,
+    let query = keystone.list('Movie').model.find().sort({
+        'screenTime.year': -1,
         'screenTime.day': 1,
         'screenTime.position': 1,
     })
 
-    if (req.query.y) {
-        query.where({'screenTime.year': +req.query.y })
-    }
-    if (req.query.d) {
-        query.where({'screenTime.day': +req.query.d })
-    }
-    if (req.query.q) {
-        query.where({'title' : new RegExp(req.query.q, 'i')})
-    }
     // if (req.query.a) {
     //     query.where({ 'award': req.query.a })
     // }
@@ -54,35 +42,70 @@ exports = module.exports = (req, res) => {
     //     query.where({ 'category': req.query.c })
     // }
 
+    function buildQuery(cb) {
+        if (req.query.y) {
+            query.where({'screenTime.year': +req.query.y })
+        }
+        if (req.query.d) {
+            query.where({'screenTime.day': +req.query.d })
+        }
+        if (req.query.q) {
+            let regex = new RegExp(req.query.q, 'i');
+            query.or([{ title: regex }, { 'director.name': regex }]);
+        }
+
+        async.each(['Award', 'MovieCategory'],
+            (listname, next) => {
+                keystone.list(listname).model.find()
+                    .exec((err, docs) => {
+                        if (err) return next(err)
+                        if (listname == 'Award') {
+                            locals.data.awards = docs
+                        }
+                        else if (listname == 'MovieCategory') {
+                            locals.data.categories = docs
+                        }
+                        next(null)
+                    })
+            }
+            ,
+            err => {
+                if (err) return cb(err)
+                if (req.query.a) {
+                    let a = _.find(locals.data.awards, a => a.title == req.query.a)
+                    query.where('award', a._id)
+                }
+                if (req.query.c) {
+                    let c = _.find(locals.data.categories, c => c.name == req.query.c)
+                    query.where('category', c._id)
+                }
+                // query.skip(req.query.page * 10).limit(10)
+                query.populate('category award')
+            }
+        )
+    }
+
     
     view.on('init', next => {
-        keystone.list('Award').model.find()
-        .exec((err, awards) => {
+        buildQuery(function(err) {
             if (err) return next(err)
-            locals.data.awards = awards
-        keystone.list('MovieCategory').model.find()
-        .exec((err, categories) => {
-            if (err) return next(err)
-            locals.data.categories = categories
-
-        if (req.query.a) {
-            let a = _.find(locals.data.awards, a => a.title == req.query.a)
-            query.where('award', a._id)
-        }
-        if (req.query.c) {
-            let c = _.find(locals.data.categories, c => c.name == req.query.c)
-            query.where('category', c._id)
-        }
-        query.populate('category award')
-        query.exec((err, docs) => {
-            if (docs && docs.length > 0) {
-                docs.results.forEach(d => d.format())
-            }
-            locals.data.movies = docs
-            next(err)
-        })
-        })    
-        })
+            query.exec((err, docs) => {
+                if (docs && docs.length > 0) {
+                    docs.forEach(d => d.format())
+                }
+                let total  = docs.length
+                let nPages = Math.ceil(total / 10)
+                locals.data.movies = {
+                    results: docs || [],
+                    total : total,
+                    totalPage : nPages,
+                    previous : req.query.page == 1 ? false : req.query.page - 1,
+                    next : req.query.page >= nPages ? false : req.quer.page + 1,
+                    pages : (Array.apply(null, {length: nPages}).map(Number.call, Number)).map(x => x+1)
+                }
+                next(err)
+            })
+        })      
     })
 
     view.render('archive')

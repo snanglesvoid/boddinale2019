@@ -103,7 +103,7 @@ block content
       li(style="cursor:pointer; display:inline-block; padding-left:0;" ): a(onclick="selectYear(this)" data-year='0') Any
     //- p.counter #{data.movies.total} Movies found
     
-    if +data.movies.total > 0
+    if +data.movies.results.length > 0
       ul.cards
         each movie, index in data.movies.results
           li.cards-item
@@ -111,7 +111,7 @@ block content
     else 
     //- 08002112525
       
-    p= JSON.stringify(data.movies)
+    //- p= JSON.stringify(data.movies)
     if data.movies.totalPages > 1
       ul.pagination
         if data.movies.previous

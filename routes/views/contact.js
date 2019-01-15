@@ -25,6 +25,7 @@ exports = module.exports = function (req, res) {
 			errorMessage: 'There was a problem submitting your enquiry:',
 		}, function (err) {
 			if (err) {
+				console.log(err)
 				locals.validationErrors = err.errors;
 			} else {
 				locals.enquirySubmitted = true;

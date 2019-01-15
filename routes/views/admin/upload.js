@@ -50,6 +50,10 @@ function insertData (year, callback) {
 	fs.readFile(dataPath, 'utf-8', (err, data) => {
 		if (err) return callback(err);
 		let moviesJSON = JSON.parse(data).data;
+		console.log('moviesJSON', moviesJSON)
+		if (!moviesJSON) {
+			return callback(new Error('nope'))
+		}
 		moviesJSON.forEach(movie => {
 			let mdb = new Movie();
 			mdb.set({

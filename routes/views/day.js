@@ -24,6 +24,7 @@ exports = module.exports = (req, res) => {
 				.find()
 				.where({ 'screenTime.year': new Date().getFullYear() })
 				.where({ 'screenTime.day': req.params.day })
+				.populate('award category')
 				.sort({
 					'screenTime.year': 1,
 					'screenTime.day': 1,
@@ -49,6 +50,7 @@ exports = module.exports = (req, res) => {
 							'screenTime.year' : 2018,
 							award : { $ne: null },
 						})
+						.populate('award category')
 						.exec((err, movies) => {
 							movies.forEach(m => m.format())
 							locals.data.movies = movies.sort((a,b) => {

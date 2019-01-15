@@ -13,6 +13,7 @@ exports = module.exports = (req, res) => {
         keystone.list('Movie').model.find()
             .where({ 'screenTime.year' : year })
             .sort({ votes: -1})
+            .populate('award category')
             .exec((err, docs) => {
                 docs.forEach(d => d.format())
                 res.locals.movies = docs

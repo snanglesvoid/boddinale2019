@@ -9,7 +9,7 @@ exports = module.exports = (req, res) => {
     
     view.query('data.movie', keystone.list('Movie').model.findOne({
         slug: req.params.slug
-    }))
+    })).populate('award category')
 
     view.render('movie')
 }

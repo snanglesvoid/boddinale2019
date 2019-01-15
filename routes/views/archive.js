@@ -45,12 +45,12 @@ exports = module.exports = (req, res) => {
     if (req.query.d) {
         query.where({'screenTime.day': +req.query.d })
     }
-    if (req.query.a) {
-        query.where({ 'award.name': req.query.a })
-    }
-    if (req.query.c) {
-        query.where({ 'category.name': req.query.c })
-    }
+    // if (req.query.a) {
+    //     query.where({ 'award': req.query.a })
+    // }
+    // if (req.query.c) {
+    //     query.where({ 'category': req.query.c })
+    // }
 
     
     view.on('init', next => {
@@ -58,6 +58,12 @@ exports = module.exports = (req, res) => {
         query.exec((err, docs) => {
             if (docs && docs.length > 0) {
                 docs.results.forEach(d => d.format())
+            }
+            if (req.query.a) {
+                docs = docs.filter(x => x.award.title == req.query.a)
+            }
+            if (req.query.c) {
+                docs = docs.filter(x => x.category.name == req.query.c)
             }
             locals.data.movies = docs
             next(err)

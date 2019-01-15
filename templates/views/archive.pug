@@ -78,7 +78,7 @@ block content
           onchange="selectAward($(this).val())"
           value="#{data.query.a || ''}")
           each award in data.awards
-            option= award.name
+            option= award.title
           option(value="") Search for awards
       .col-xs-12.col-sm-6.category(style="float: right; display:inline-block")
         select#category-select.form-control(

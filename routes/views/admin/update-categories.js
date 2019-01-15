@@ -18,7 +18,8 @@ exports = module.exports = (req, res) => {
         async.each(movies, (movie, cb) => {
             let oldCat = movie.category
             let oldAwa = movie.award
-            console.log(movie.title, movie._category, movie._award)
+            console.log(movie.category, movie.award)
+            console.log(movie._category, movie._award)
             movie.set({
                 _award: movie.award,
                 _categori: movie.category,

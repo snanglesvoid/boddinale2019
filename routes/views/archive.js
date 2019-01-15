@@ -3,7 +3,7 @@ const _  = require('lodash')
 const async = require('async')
 
 exports = module.exports = (req, res) => {
-    return res.json('ok')
+    // return res.json('ok')
     const view = new keystone.View(req, res)
     const locals = res.locals
 
@@ -94,27 +94,28 @@ exports = module.exports = (req, res) => {
 
     
     view.on('init', next => {
-        console.log('init')
-        buildQuery(function(err) {
-            console.log('built')
-            if (err) return next(err)
-            query.exec((err, docs) => {
-                if (docs && docs.length > 0) {
-                    docs.forEach(d => d.format())
-                }
-                let total  = docs.length
-                let nPages = Math.ceil(total / 10)
-                locals.data.movies = {
-                    results: docs || [],
-                    total : total,
-                    totalPage : nPages,
-                    previous : req.query.page == 1 ? false : req.query.page - 1,
-                    next : req.query.page >= nPages ? false : req.quer.page + 1,
-                    pages : (Array.apply(null, {length: nPages}).map(Number.call, Number)).map(x => x+1)
-                }
-                next(err)
-            })
-        })      
+        next()
+        // console.log('init')
+        // buildQuery(function(err) {
+        //     console.log('built')
+        //     if (err) return next(err)
+        //     query.exec((err, docs) => {
+        //         if (docs && docs.length > 0) {
+        //             docs.forEach(d => d.format())
+        //         }
+        //         let total  = docs.length
+        //         let nPages = Math.ceil(total / 10)
+        //         locals.data.movies = {
+        //             results: docs || [],
+        //             total : total,
+        //             totalPage : nPages,
+        //             previous : req.query.page == 1 ? false : req.query.page - 1,
+        //             next : req.query.page >= nPages ? false : req.quer.page + 1,
+        //             pages : (Array.apply(null, {length: nPages}).map(Number.call, Number)).map(x => x+1)
+        //         }
+        //         next(err)
+        //     })
+        // })      
     })
 
     view.render('archive')

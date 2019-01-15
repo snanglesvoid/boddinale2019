@@ -121,17 +121,23 @@ html
 
 
     FOOTER
+    -var sponsors = partners.filter(x => x.sponsor)
+    -partners = partners.filter(x => !x.sponsor)
     .container: .footer
       p partners
-      .row
-        each partner in partners.filter(x => !x.sponsor)
-          .col-sm-6.col-md-4
-            a(href= partner.linkUrl, target="_blank")
-              img(src=partner.logo.url)
+        while partners.length > 0
+        -var ps = _.first(partners, 3)
+        -partners = _.last(partners, partners.length - 3)
+        .row
+          each partner in ps
+            .col-sm-6.col-md-4
+              a(href= partner.linkUrl, target="_blank")
+                img(src=partner.logo.url)
+          
     .container: .footer
       p sponsored by
       .row
-        each partner in partners.filter(x => x.sponsor)
+        each partner in sponsors
           .col-sm-6.col-md-4
             a(href= partner.linkUrl, target="_blank")
               img(src=partner.logo.url)

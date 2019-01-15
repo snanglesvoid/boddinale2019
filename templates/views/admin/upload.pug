@@ -1,0 +1,10 @@
+include ../../mixins/flash-messages.jade
+
+html
+  head
+  body
+    form(method="post", enctype='multipart/form-data', autocomplete='off', novalidate)
+      input(type="hidden", name="action", value="upload")
+      input#movies(type="file", name="movies")
+      input(type="number", placeholder="for year...", name="year")
+      button(type="submit") Upload JSON!

@@ -1,7 +1,6 @@
 var keystone = require('keystone');
 var Enquiry = keystone.list('Enquiry');
-var http = require('http')
-var querystring = require('querystring');
+var request = require('request')
 
 exports = module.exports = function (req, res) {
 
@@ -19,14 +18,21 @@ exports = module.exports = function (req, res) {
 	view.on('post', { action: 'contact' }, function (next) {
 
 		let token = req.body.token
+
 		console.log(token)
-
-
-		var post_data = querystring.stringify({
+		request.post('https://www.google.com/recaptcha/api/siteverify', {
 			secret: '6LfIEooUAAAAANek286UrfA9bMuugyuWZLh0apTL',
 			response: token
+		}, function(err, res, body) {
+			console.log(err, res, body)
+			// if (!err && res.statusCode === 200) {
+			// 	funcTwo(body, function(err, output) {
+			// 		console.log(err, output);
+			// 	});
+			// }
 		});
 
+	
 		var post_options = {
 			host: 'https://www.google.com',
 			port: '443',
@@ -37,13 +43,6 @@ exports = module.exports = function (req, res) {
 				'Content-Length': Buffer.byteLength(post_data)
 			}
 		};
-
-		var post_req = http.request(post_options, function(res) {
-			res.setEncoding('utf8');
-			res.on('data', function (chunk) {
-				console.log('Response: ' + chunk);
-			});
-		});
 	  
 		// post the data
 		post_req.write(post_data);

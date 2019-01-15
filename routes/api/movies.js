@@ -3,7 +3,7 @@ const keystone = require('keystone');
 
 exports = module.exports = (req, res) => {
 
-	let query = keystone.list('Movie').model.find();
+	let query = keystone.list('Movie').model.find().populate('award category');
 	console.log(req.query);
 	if (req.query) {
 		query.where(req.query);

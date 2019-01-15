@@ -53,37 +53,39 @@ exports = module.exports = (req, res) => {
             let regex = new RegExp(req.query.q, 'i');
             query.or([{ title: regex }, { 'director.name': regex }]);
         }
+        query.populate('category award')
+        cb()
 
-        async.each(['Award', 'MovieCategory'],
-            (listname, next) => {
-                keystone.list(listname).model.find()
-                    .exec((err, docs) => {
-                        if (err) return next(err)
-                        if (listname == 'Award') {
-                            locals.data.awards = docs
-                        }
-                        else if (listname == 'MovieCategory') {
-                            locals.data.categories = docs
-                        }
-                        next(null)
-                    })
-            }
-            ,
-            err => {
-                if (err) return cb(err)
-                if (req.query.a) {
-                    let a = _.find(locals.data.awards, a => a.title == req.query.a)
-                    query.where('award', a._id)
-                }
-                if (req.query.c) {
-                    let c = _.find(locals.data.categories, c => c.name == req.query.c)
-                    query.where('category', c._id)
-                }
-                // query.skip(req.query.page * 10).limit(10)
-                query.populate('category award')
-                cb()
-            }
-        )
+        // async.each(['Award', 'MovieCategory'],
+        //     (listname, next) => {
+        //         keystone.list(listname).model.find()
+        //             .exec((err, docs) => {
+        //                 if (err) return next(err)
+        //                 if (listname == 'Award') {
+        //                     locals.data.awards = docs
+        //                 }
+        //                 else if (listname == 'MovieCategory') {
+        //                     locals.data.categories = docs
+        //                 }
+        //                 next(null)
+        //             })
+        //     }
+        //     ,
+        //     err => {
+        //         if (err) return cb(err)
+        //         if (req.query.a) {
+        //             let a = _.find(locals.data.awards, a => a.title == req.query.a)
+        //             query.where('award', a._id)
+        //         }
+        //         if (req.query.c) {
+        //             let c = _.find(locals.data.categories, c => c.name == req.query.c)
+        //             query.where('category', c._id)
+        //         }
+        //         // query.skip(req.query.page * 10).limit(10)
+        //         query.populate('category award')
+        //         cb()
+        //     }
+        // )
     }
 
     

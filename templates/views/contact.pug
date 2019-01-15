@@ -13,7 +13,7 @@ block js
 			grecaptcha.execute('6LfIEooUAAAAAJLRJ5_chihbhTpomBrqYG3QZBeV', {action: 'action_name'})
 			.then(function(token) {
 				console.log(token)
-				$('#captcha-token').value(token)
+				$('#captcha-token').val(token)
 			});
 		});
 		

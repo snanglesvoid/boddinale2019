@@ -44,6 +44,9 @@ exports = module.exports = (req, res) => {
     if (req.query.d) {
         query.where({'screenTime.day': +req.query.d })
     }
+    if (req.query.q) {
+        query.where({'title' : new RegExp(req.query.year, 'i')})
+    }
     // if (req.query.a) {
     //     query.where({ 'award': req.query.a })
     // }

@@ -15,7 +15,7 @@ exports = module.exports = (req, res) => {
         let awards = data['Award']
         let categories = data['MovieCategory']
 
-        async.each(movies, (movie, cb) => {
+        async.eachSeries(movies, (movie, cb) => {
             
             // movie.set({
             //     _award: movie.award,

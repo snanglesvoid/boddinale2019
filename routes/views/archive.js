@@ -43,6 +43,7 @@ exports = module.exports = (req, res) => {
     // }
 
     function buildQuery(cb) {
+        console.log('build query')
         if (req.query.y) {
             query.where({'screenTime.year': +req.query.y })
         }
@@ -91,6 +92,7 @@ exports = module.exports = (req, res) => {
     
     view.on('init', next => {
         buildQuery(function(err) {
+            console.log('built')
             if (err) return next(err)
             query.exec((err, docs) => {
                 if (docs && docs.length > 0) {

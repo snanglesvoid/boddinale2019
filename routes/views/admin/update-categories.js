@@ -19,14 +19,15 @@ exports = module.exports = (req, res) => {
         async.eachSeries(movies, (movie, cb) => {
             
             //backup old
-            movie.set({
-                _award: movie.award,
-                _category: movie.category,
-            })
-            return movie.save(cb)
+            // movie.set({
+            //     _award: movie.award,
+            //     _category: movie.category,
+            // })
+            // return movie.save(cb)
 
             //instantiate new
             let c = _.find(categories, x => x.name = movie._category)
+            if (c) movie.category = c._d
             let a = _.find(awards, x => x.title == movie._award)
             if (a) movie.award = a._id
             movie.save(cb)

@@ -1,5 +1,7 @@
 var keystone = require('keystone');
 var Enquiry = keystone.list('Enquiry');
+var http = require('http')
+var querystring = require('querystring');
 
 exports = module.exports = function (req, res) {
 
@@ -18,6 +20,15 @@ exports = module.exports = function (req, res) {
 
 		let token = req.body.token
 		console.log(token)
+
+
+		var post_data = querystring.stringify({
+			secret: '6LfIEooUAAAAANek286UrfA9bMuugyuWZLh0apTL',
+			response: token
+		});
+
+
+
 		var newEnquiry = new Enquiry.model();
 		var updater = newEnquiry.getUpdateHandler(req);
 		updater.process(req.body, {

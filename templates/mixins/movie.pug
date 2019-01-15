@@ -24,7 +24,7 @@ mixin movie(movie, truncate)
         p.card-text.author by <a href="#{movie.director.href}"><em>#{movie.director.name}</em></a>
       
       if movie.category
-        div.movie-category!= movie.category.name + (',') + ('&#32;'))
+        div.movie-category!= movie.category.name + (',') + ('&#32;')
       if movie.length && movie.length > 0
         div.movie-length!= movie.length + ('&#39;')
       if movie.award && movie.award.name

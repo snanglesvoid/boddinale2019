@@ -30,6 +30,7 @@ block content
 		else
 			.row: .col-sm-8.col-md-5.col-centered
 				form(method='post')
+					h2 Contact us
 					input(type='hidden', name='action', value='contact')
 					input(type='hidden', name='token', id='captcha-token')
 					.form-group(class= validationErrors.name ? 'has-error' : null)

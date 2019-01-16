@@ -2,6 +2,8 @@ var keystone = require('keystone');
 var Enquiry = keystone.list('Enquiry');
 var request = require('request')
 
+const urlRegex = /(https?:\/\/[^\s]+)/g;
+
 exports = module.exports = function (req, res) {
 
 	var view = new keystone.View(req, res);
@@ -18,6 +20,9 @@ exports = module.exports = function (req, res) {
 	view.on('post', { action: 'contact' }, function (next) {
 
 		let token = req.body.token
+
+		if (req.body.honey) return next('oops')
+		if (urlRegex.match(req.body.message)) return next('oops')
 
 		console.log(token)
 		request.post({

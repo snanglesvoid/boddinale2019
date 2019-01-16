@@ -33,6 +33,7 @@ block content
 					h2 Contact us
 					input(type='hidden', name='action', value='contact')
 					input(type='hidden', name='token', id='captcha-token')
+					input(type='hidden', name='honey', value='')
 					.form-group(class= validationErrors.name ? 'has-error' : null)
 						label Name
 						input(type='text', name='name.full', value=formData['name.full']).form-control

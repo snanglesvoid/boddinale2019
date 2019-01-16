@@ -21,6 +21,9 @@ block js
 		
 block content
 	.container.contact
+		.row: .col-sm-8.col-md-5.col-centered
+			+subscribe
+	.container.contact
 		if enquirySubmitted
 			.row: .col-sm-8.col-md-5.col-centered
 				h3 Thanks for getting in touch.
@@ -38,17 +41,9 @@ block content
 					.form-group
 						label Phone
 						input(type='text', name='phone', value=formData.phone, placeholder='(optional)').form-control
-					.form-group(class= validationErrors.enquiryType ? 'has-error' : null)
-						label What are you contacting us about?
-						select(name='enquiryType').form-control
-							option(value='') (select one)
-							each type in enquiryTypes
-								option(value= type.value, selected=formData.enquiryType == type.value)= type.label
 					.form-group(class=validationErrors.message ? 'has-error' : null)
 						label Message
 						textarea(name='message', placeholder='Leave us a message...' rows=4).form-control= formData.message
 					.form-actions
 						button(type='submit').btn.btn-primary Send
-	.container.contact
-		.row: .col-sm-8.col-md-5.col-centered
-			+subscribe
+

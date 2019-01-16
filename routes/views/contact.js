@@ -21,8 +21,24 @@ exports = module.exports = function (req, res) {
 
 		let token = req.body.token
 
-		if (req.body.honey) return next('oops')
-		if (req.body.message && req.body.message.match(urlRegex)) return next('oops')
+		if (req.body.honey) {
+			locals.validationErrors = {
+				error: 'validationErrors',
+				detail : {
+					honey: { type: 'Robot', error: "You're obviously a robot" }
+				}
+			}
+			return next()
+		}
+		if (req.body.message && req.body.message.match(urlRegex)) {
+			locals.validationErrors = {
+				error: 'valdationErrors',
+				detail: {
+					link: { type: 'Link', error: "Please don't post links in this form!" }
+				}
+			}
+			return next()
+		}
 
 		console.log(token)
 		request.post({

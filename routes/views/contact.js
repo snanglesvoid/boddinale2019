@@ -23,19 +23,13 @@ exports = module.exports = function (req, res) {
 
 		if (req.body.honey) {
 			locals.validationErrors.errors = {
-				error: 'validationErrors',
-				detail : {
-					honey: { type: 'Robot', error: "You're obviously a robot" }
-				}
+				honey: { type: 'Robot', error: "You're obviously a robot" }
 			}
 			return next()
 		}
 		if (req.body.message && req.body.message.match(urlRegex)) {
 			locals.validationErrors.errors = {
-				error: 'valdationErrors',
-				detail: {
-					link: { type: 'Link', error: "Please don't post links in this form!" }
-				}
+				link: { type: 'Link', error: "Please don't post links in this form!" }
 			}
 			return next()
 		}

@@ -34,6 +34,8 @@ block content
 					input(type='hidden', name='action', value='contact')
 					input(type='hidden', name='token', id='captcha-token')
 					input(type='hidden', name='honey', value='')
+					.form-group(class= validationErrors.honey ? 'has-error' : null, style= validationErrors.honey ? 'display: block;' : 'display: none;')
+					.form-group(class= validationErrors.link ? 'has-error' : null, style= validationErrors.link ? 'display: block;' : 'display: none;')
 					.form-group(class= validationErrors.name ? 'has-error' : null)
 						label Name
 						input(type='text', name='name.full', value=formData['name.full']).form-control

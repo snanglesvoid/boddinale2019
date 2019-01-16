@@ -22,7 +22,7 @@ exports = module.exports = function (req, res) {
 		let token = req.body.token
 
 		if (req.body.honey) return next('oops')
-		if (urlRegex.match(req.body.message)) return next('oops')
+		if (req.body.message && req.body.message.match(urlRegex)) return next('oops')
 
 		console.log(token)
 		request.post({

@@ -25,20 +25,11 @@ exports = module.exports = function (req, res) {
 			locals.validationErrors.errors = {
 				honey: { type: 'Robot', error: "You're obviously a robot" }
 			}
-			locals.messages = {error : [
-				{ type: 'ValdiationError', title: 'There was a problem submitting your enquiry', list: [
-					'You are obviously a Robot'
-				]}
-			]}
-			// ,"error":[{"type":"ValidationError","title":"There was a problem submitting your enquiry:","list":["Name is required","Message is required"]}
+			req.flash('error', 'You are obviously a Robot')
 			return next()
 		}
 		if (req.body.message && req.body.message.match(urlRegex)) {
-			locals.messages = {error : [
-				{ type: 'ValdiationError', title: 'There was a problem submitting your enquiry', list: [
-					"Please don't post links into this form!"
-				]}
-			]}
+			req.flash('error', "Please don't post links into this form!")
 			return next()
 		}
 

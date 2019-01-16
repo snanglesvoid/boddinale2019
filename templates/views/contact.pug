@@ -22,7 +22,8 @@ block js
 block content
 	.container.contact
 		if enquirySubmitted
-			h3 Thanks for getting in touch.
+			.row: .col-sm-8.col-md-5.col-centered
+				h3 Thanks for getting in touch.
 		else
 			.row: .col-sm-8.col-md-5.col-centered
 				form(method='post')
@@ -49,4 +50,5 @@ block content
 					.form-actions
 						button(type='submit').btn.btn-primary Send
 	.container.contact
-		+subscribe
+		.row: .col-sm-8.col-md-5.col-centered
+			+subscribe

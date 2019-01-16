@@ -35,7 +35,8 @@ mixin movie(movie, truncate)
       if movie.award && movie.award.title
         div(style='width: 100%;')
           .category-label.card-text= movie.award.title
-      //- div.description-text!= movie.description
+      if truncate
+        div.description-text!= movie.description
       
       if movie.externalLink
           a(href= movie.externalLink target="_blank").movie-weblink

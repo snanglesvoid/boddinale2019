@@ -10,7 +10,7 @@ mixin videoEmbed(url)
       img.card-image(src="/images/placeholder.jpg")
       iframe(src=url frameborder="0" allowfullscreen)
 
-mixin movie(movie, truncate, showtext)
+mixin movie(movie, truncate, showText)
  .card(class= truncate?  'large-card':'small-card')
     a.movie(href="/movie/" + movie.slug style="cursor:pointer;")
       if movie.display.youtube

@@ -10,7 +10,7 @@ mixin videoEmbed(url)
       img.card-image(src="/images/placeholder.jpg")
       iframe(src=url frameborder="0" allowfullscreen)
 
-mixin movie(movie, truncate)
+mixin movie(movie, truncate, showtext)
  .card(class= truncate?  'large-card':'small-card')
     a.movie(href="/movie/" + movie.slug style="cursor:pointer;")
       if movie.display.youtube
@@ -35,7 +35,7 @@ mixin movie(movie, truncate)
       if movie.award && movie.award.title
         div(style='width: 100%;')
           .category-label.card-text= movie.award.title
-      if truncate
+      if truncate || showText
         div.description-text!= movie.description
       
       if movie.externalLink

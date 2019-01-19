@@ -78,7 +78,7 @@ html
             .logo-text
               +snippet('nav-description')
               //- BERLIN COMMUNITY MOVIE FESTIVAL
-          .collapse.navbar-collapse.in
+          .collapse.navbar-collapse
             ul.nav.navbar-nav.navbar-left
               each link in navLinks.filter(l => !l.inDropdown)
                 li(class=(section == link.key ? 'active' : null)): a(href=link.linkUrl)= link.title

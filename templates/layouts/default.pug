@@ -64,7 +64,7 @@ html
 
     //- HEADER
     #header: .container
-      div(role="navigation").navbar.navbar-default.in
+      div(role="navigation").navbar.navbar-default
         .container-fluid
           .navbar-header
             button.navbar-toggle(type='button', data-toggle='collapse', data-target='.navbar-collapse')
@@ -93,7 +93,7 @@ html
                     each link in ddlinks
                       li(class=(section == link.key ? 'active' : null)): a(href=link.linkUrl)= link.title
               li.nav-divider
-            ul.nav.navbar-nav.navbar-right
+            //- ul.nav.navbar-nav.navbar-right
               li: a(href="https://itunes.apple.com/app/id1341009308" target="_blank")
                 img(style="height: 32px;width: auto;" src="../images/app-store.png")
               li: a(href="https://play.google.com/store/apps/details?id=com.boddinale" target="_blank")

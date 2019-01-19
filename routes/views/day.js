@@ -47,7 +47,7 @@ exports = module.exports = (req, res) => {
 					else locals.data.content = 'No Content named \'Last Day\' found';
 					keystone.list('Movie').model.find()
 						.where({
-							'screenTime.year' : 2018,
+							'screenTime.year' : (new Date().getFullYear()),
 							award : { $ne: null },
 						})
 						.populate('award category')

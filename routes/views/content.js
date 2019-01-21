@@ -4,7 +4,7 @@ exports = module.exports = (req, res) => {
     const view = new keystone.View(req, res)
     let locals = res.locals
     
-    locals.section = 'content'
+    locals.section = req.params.slug
 
     view.query('data', keystone.list('Content').model.findOne({slug: req.params.slug}))
 

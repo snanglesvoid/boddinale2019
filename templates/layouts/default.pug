@@ -131,6 +131,8 @@ html
         .container: .footer
           if index == 0
             p partners
+          if chunk.length == 1
+            .col-sm-6.col-md-4
           each partner in chunk
             .col-sm-6.col-md-4
               a(href= partner.linkUrl, target="_blank")
@@ -139,8 +141,9 @@ html
     .row
       .container: .footer
         p sponsored by
+          if sponsors.length == 1
+            .col-sm-6.col-md-4 
           each partner in sponsors
-            .col-sm-6.col-md-4
             .col-sm-6.col-md-4
               a(href= partner.linkUrl, target="_blank")
                 img(src=partner.logo.url)
